@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>悠悠雨注册</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="Login sign">
+		<header>
+			<div class="logo"></div>
+			<p>长沙市菜篮子直销工程</p>
+		</header>
+		<div class='step3 logn_in material'>
+			<article>
+				<h2>商户资料确认</h2>
+				<section class="phone">
+					<p>真实姓名</p>
+					<input type="text" id="name" placeholder="请输入您的真实姓名" />
+				</section>
+				<section class="datum">
+					<p>商户名称</p>
+					<input type="text" id="SHname" placeholder="请输入您的店铺名称" />
+				</section>
+				<div class="card">
+					<div class="left">
+						<p>个人身份证正面照片</p>
+						<div><input type="file" class="file" accept="images/" id="fileSelect1"><img src="img/login/plus@3x.png"></div>
+					</div>
+					<div class="right">
+						<p>个人身份证反面照片</p>
+						<div><input type="file" class="file" accept="images/" id="fileSelect2"><img src="img/login/plus@3x.png"></div>
+					</div>
+				</div>
+				<div class="charter">
+					<div>
+						<p>商户营业执照正面照片</p>
+						<div><input type="file" class="file" claccept="images/" id="fileSelect3"><img src="img/login/plus@3x.png"></div>
+					</div>
+				</div>
+				<a href="javascript:void(0)" id="step3"><button>重新提交</button></a>
+			</article>
+		</div>
+
+		<div class="SignPop none">
+			<div class="popcontent">
+				<div class="img"><img src="img/tjcg3x.png"></div>
+				<h2>提交成功</h2>
+				<div class="content">
+					<p>工作人员正在人工审核您的信息<br> 我们会在三天工作日内完成您的审核
+						<br> 请保持电话畅通
+					</p>
+				</div>
+				<div class="button">
+					<button>先去逛逛</button>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src='js/commonfuc.js'></script>
+		<script src='mui/mui.min.js'></script>
+		<script src="js/fastclick.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+			//		$('.captcha').bind('click',function(){
+			//			$(this).addClass('click');
+			//		})
+			$(function() {
+				var mask = spinMask();//callback为用户点击蒙版时自动执行的回调；
+				var phone = localStorage.getItem('phone');
+				var pwd = localStorage.getItem('pwd');
+				$("#name").blur(function() {
+					verifyName($("#name").val());
+				})
+				$("#SHname").blur(function() {
+					isChinese($("#SHname").val());
+				})
+					var step3 = document.querySelector('#step3');
+					step3.addEventListener('tap', sigonTap3);
+
+					function sigonTap3() {
+						var flag = 0;
+						if(flag == 0) {
+							flag = 1;
+							if(verifyName($("#name").val())) {
+								if(isChinese($("#SHname").val())) {
+									if(imgSrc[1] && imgSrc[2] && imgSrc[3]) {
+										signinAjax(phone, pwd, $('#name').val(), $('#SHname').val());
+									} else {
+										mui.toast("您还未传完所需的图片")
+									}
+								}
+							}
+							setTimeout(function() {
+								flag = 0;
+							}, 2000);
+						};
+					}
+
+					function signinAjax(phone, passwd, name, shopname) {
+						var data_json = {
+							realname: name,
+							shopname: shopname,
+							datajson_id_front: imgSrc[1],
+							datajson_id_reverse: imgSrc[2],
+							datajson_businesslicense: imgSrc[3]
+						};
+						data_json = JSON.stringify(data_json)
+						var psajax = {
+							clientid: token,
+							account: phone,
+							pwd: passwd,
+							data_json: data_json
+						};
+						var datas = get_post_ps(psajax);
+						console.log(data_json);
+						$.ajax(commonUrl + 'appyyyl/memberShTj', {
+							data: datas,
+							dataType: 'json',
+							type: 'post',
+							timeout: 6000,
+							success: function(data) {
+								console.log(JSON.stringify(data));
+								if(data.code == 1) {
+									localStorage.setItem('phone', '');
+									localStorage.setItem('pwd', '');
+									$('.SignPop').removeClass('none');
+									$('.SignPop .button button').bind('click', function() {
+										window.location.href = 'index.html';
+									});
+								} else {
+									if(data.code == '-2') {
+										mui.toast(data.msg);
+									} else {
+										mui.toast("注册失败")
+									}
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								//异常处理；
+								mui.toast(RequestErrorMsg(type));
+							}
+						});
+					}
+					//将图片压缩转成base64
+					function convertImgToBase64(url, callback, outputFormat) {
+						var canvas = document.createElement('CANVAS');
+						var ctx = canvas.getContext('2d');
+						var img = new Image;
+						img.crossOrigin = 'Anonymous';
+						img.onload = function() {
+							var width = img.width;
+							var height = img.height;
+							// 按比例压缩 rate 倍
+							canvas.width = width;
+							canvas.height = height;
+							ctx.drawImage(img, 0, 0, width, height, 0, 0, width, height);
+							var dataURL = canvas.toDataURL(outputFormat || 'image/jpeg', 0.5);
+							callback.call(this, dataURL);
+							canvas = null;
+						};
+						img.src = url;
+					}
+
+					function getObjectURL(file) {
+						var url = null;
+						if(window.createObjectURL != undefined) { // basic
+							url = window.createObjectURL(file);
+						} else if(window.URL != undefined) { // mozilla(firefox)
+							url = window.URL.createObjectURL(file);
+						} else if(window.webkitURL != undefined) { // web_kit or chrome
+							url = window.webkitURL.createObjectURL(file);
+						}
+						return url;
+					}
+					var imgSrc = [];
+					// 前端只需要给input file绑定这个change事件即可（上面两个方法不用管）huodong-msg为input class
+					$('#fileSelect1').bind('change', function() {
+						updata($('.left div img'), 1, $('#fileSelect1'));
+					});
+					$('#fileSelect2').bind('change', function() {
+						updata($('.right div img'), 2, $('#fileSelect2'));
+					});
+					$('#fileSelect3').bind('change', function() {
+						updata($('.charter div img'), 3, $('#fileSelect3'));
+					});
+
+					function updata(Class, index, Object) {
+						var imageUrl = getObjectURL(Object[0].files[0]);
+						mask.show();
+						convertImgToBase64(imageUrl, function(base64Img) {
+							
+							update_head_img(base64Img, index, Class);
+							// base64Img为转好的base64,放在img src直接前台展示(<img src="data:image/jpg;base64,/9j/4QMZRXh...." />)
+							//alert(base64Img);
+							// base64转图片不需要base64的前缀data:image/jpg;base64
+							//alert(base64Img.split(",")[1]);
+						});
+						event.preventDefault();
+					}
+					//更新用户头像
+					function update_head_img(base64Img, index, Class) {
+						//先上传
+						var datas = {
+							data: base64Img,
+							clientid: token
+						}
+						$.post(commonUrl + 'others/upload2', datas, function(data) {
+							if(data.code == 1) {
+								mui.toast('图片上传成功');
+								//			console.log(data.data.full_url);
+								imgSrc[index] = data.data.full_url;
+								Class.attr('src', imgSrc[index]);
+								
+								//触发首页webview上自定义的刷新个人信息和购物车事件
+							} else {
+								mui.toast("图片上传失败");
+							}
+							mask.close();
+						}, 'json');
+					}
+
+			})
+		</script>
+	</body>
+
+</html>

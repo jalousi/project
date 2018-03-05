@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>我的收货地址</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jsencrypt.js"></script>
+	</head>
+
+	<body class="MyAddrs MyAddrManage">
+        <div class="empty">
+			<div class="sky_img"><img src="img/personal/personal_address_noaddress.png"></div>
+			<p>您当前还没有收货地址哟</p>
+		</div>
+		<!--主体 begin-->
+		<div class="Conter">
+			<div class="addrsbox">
+				<!--<section class="myAddrli">
+					<div class="addr-msg">
+						<p>姓名</p>
+						<p>139 7485 1332</p>
+						<p>湖南省长沙市岳麓区麓云路涉外花园（湖南涉外经济学院附近），涉外花园C01栋2楼219房间</p>
+					</div>
+					<div class="addr-edit">
+						<label class="defaultbox"><input checked type="checkbox" class="defaultaddr" name="defaultaddr" />默认地址</label>
+						<div class="editbox">
+							<div class="box">
+								<a href="MyAddrEdit.html"><span>编辑</span></a>
+							</div>
+							<div class="box">
+								<a href="javascript:void(0);" class="deletaddr"><span>删除</span></a>
+							</div>
+						</div>
+					</div>
+					<input class="Selectedaddrid" type="hidden" value="0" />
+				</section>
+				<section class="myAddrli">
+					<div class="addr-msg">
+						<p>姓名</p>
+						<p>139 7485 1332</p>
+						<p>××省××市××区××小区××楼</p>
+					</div>
+					<div class="addr-edit">
+						<label class="defaultbox"><input checked type="checkbox" class="defaultaddr" name="defaultaddr" />默认地址</label>
+						<div class="editbox">
+							<div class="box">
+								<a href="MyAddrEdit.html"><span>编辑</span></a>
+							</div>
+							<div class="box">
+								<a href="javascript:void(0);" class="deletaddr"><span>删除</span></a>
+							</div>
+						</div>
+					</div>
+					<input class="Selectedaddrid" type="hidden" value="0" />
+				</section>-->
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 -->
+		<div class="footer_blank"></div>
+		<div class="footer page-slideright">
+			<a href="MyAddrEdit.html">新增收货地址</a>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/commonfuc.js"></script>
+	<script src="js/ajax/MyAddrManage.js"></script>
+	<script>
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+	</script>
+
+</html>

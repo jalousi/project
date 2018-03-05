@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>个人信息</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="shop_name">
+		<section>
+			<input value="" type="text">
+			<button>完成</button>
+		</section>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/commonfuc.js" ></script>
+		<script type="text/javascript" src="js/app_init.js" ></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script>
+		$(function() { FastClick.attach(document.body);});
+		$(function() {
+			var name=getQueryString('name');
+				var datas={
+					token:localStorage.getItem('m_openid')
+				}
+				datas=api_com_ps(datas);
+//				console.log(JSON.stringify(datas));
+				var opsx = {
+					url: commonUrl + 'store/getData',
+					method: 'get',
+					data: datas,
+					datatype: 'jsonp',
+				};
+				api_call(opsx, function(data) {
+					var users=data.data;
+					$('section input').attr('value',users[name]);
+				});
+				$('button').bind('tap',function(){
+					if(isname(name,$('section input').val())){
+					modification(name,$('section input').val());
+					}
+				})
+			})
+		
+		//修改个人信息
+		function modification(type1, value) {
+			var data_json = {};
+			data_json[type1] = value;
+			data_json = JSON.stringify(data_json);
+			var datas = {
+				token: localStorage.getItem('m_openid'),
+				data_json: data_json
+			}
+			datas = api_com_ps(datas);
+			//				console.log(JSON.stringify(datas));
+			var opsx = {
+				url: commonUrl + 'store/userInfoSave',
+				method: 'post',
+				data: datas,
+				datatype: 'json',
+			};
+			api_call(opsx, function(data) {
+             if(data.code==1){
+             	mui.toast('修改成功');
+             	history.replaceState(null,'个人中心','My_center.html');
+             	window.location.href='personal_details.html';
+             }else{
+             mui.toast(data.msg);
+             }
+			});
+		}
+//		判断输入规范
+	   function isname(name,Object){
+	   	if(name=='phone'){
+	   		return checkPhone(Object);
+	   	}else{
+	   		if(name=='realname'){
+	   			return verifyName(Object);
+	   		}else{
+	   			return isChinese(Object);
+	   		}
+	   	}
+	   };
+		</script>
+	</body>
+
+</html>

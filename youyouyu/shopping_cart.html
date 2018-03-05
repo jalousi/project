@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>购物车</title>
+		<link rel="stylesheet" href="mui/mui.min.css" />
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+    
+	<body class="shopping_cart">
+		<div class="empty">
+			<div class="sky_img"><img src="img/shopping/shopping_empty.png"></div>
+			<p>购物车是空的</p>
+			<a href="index.html"><button>随便逛逛</button></a>
+		</div>
+		<article>
+			<div class="compile">
+				<p>温馨提示：请仔细核对您的商品</p>
+				<button>编辑</button>
+			</div>
+			<div class="content">
+			</div>
+			<div class="account">
+				<div class="left">
+				<p class="checked">全选</p>
+				<div>
+					<p>合计</p>
+					<h3>￥<span></span></h3>
+				</div>
+				</div>
+				<a href="javascript:void(0)"><button><span class="but1">确认订单</span><span class="but2"></span></button><span></span></a>
+			</div>
+		</article>
+		<div class="footer_blank"></div>
+		<div class="footer">
+			<div class="footernav">
+				<ul>
+					<li>
+						<a  href="index.html">
+							<i></i>
+							<p>首页</p>
+						</a>
+					</li>
+					<li>
+						<a href="classify.html">
+							<i></i>
+							<p>分类</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav-active" href="shopping_cart.html">
+							<i><span class="mui-badge"></span></i>
+							<p>购物车</p>
+						</a>
+					</li>
+					<li>
+						<a href="My_center.html">
+							<i></i>
+							<p>我的</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/html" id="template1">
+			{{each lists}}
+			<section>
+				{{if DelIndex==0}}
+		           <div class="checkbox checked"><input type="checkbox"></div>
+		           {{else (DelIndex==1)}}
+		           <div class="checkbox"><input type="checkbox"></div>
+		           {{/if}}
+					<div class="left"><img src="${$value.goods.data_json.pic}"></div>
+					<div class="right">
+						<h3>${$value.goods.title}</h3>
+						<div>
+						<h4>${$value.goods.number_min}${$value.skuprice.dw_name}起订</h4>
+						<p>￥${$value.skuprice.price_final}</p>
+						</div>
+					</div>
+					<div class="size">
+						<div class="left"><img src="img/classification/reduce.png"></div>
+						<p><input type="number" value="${$value.buys.number}"></p>
+						<div class="right"><img src="img/classification/add.png"></div>
+					</div>
+				</section>
+				{{/each}}
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/ajax/shoppingcartAjax.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>分类</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/swiper.min.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="classify" id="classify">
+		<div class="serchbox">
+			<div class="mui-input-row">
+				<img src="img/classification/search.png">
+				<input id="search" type="search" class="mui-input-clear" placeholder="悠悠雨林叶菜一号">
+			</div>
+			<p>搜索</p>
+		</div>
+		<nav id="nav">
+
+		</nav>
+		<div class="Conter mui-content">
+			<div class="W-GoodsClassfy">
+					<div class="tabbar mui-col-xs-3">
+						<div id="classify1" class="mui-segmented-control-inverted mui-segmented-control-vertical">
+							<!--<p></p>
+							<a class="mui-tab-item mui-active" href="#class1">蔬菜蛋品</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>
+							<a class="mui-tab-item" href="#class2">精选肉类</a>-->
+						</div>
+				</div>
+				<div class="tabcont mui-content" id="shoppingList">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer_blank"></div>
+		<div class="footer">
+			<div class="footernav">
+				<ul>
+					<li>
+						<a href="index.html">
+							<i></i>
+							<p>首页</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav-active" href="classify.html">
+							<i></i>
+							<p>分类</p>
+						</a>
+					</li>
+					<li>
+						
+						<a href="shopping_cart.html">
+							<i>
+								<span class="mui-badge"></span>
+							</i>
+							<p>购物车</p>
+						</a>
+					</li>
+					<li>
+						<a href="My_center.html">
+							<i></i>
+							<p>我的</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/html" id="template0">
+			<p></p>
+			{{each data}}
+			{{if $index==sclassify1}}
+				<a class="mui-tab-item mui-active" href="#class${$index+1}">${$value.name}</a>
+				{{else $value.child.length !=0}}
+				<a class="mui-tab-item" href="#class${$index+1}">${$value.name}</a>
+				{{/if}}
+			{{/each}}
+		</script>
+		<script type="text/html" id="template1">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					{{each child}} {{if $index==0}}
+					<div class="swiper-slide selected">
+						<p>${$value.name}</p>
+					</div>
+					{{else}}
+					<div class="swiper-slide">
+						<p>${$value.name}</p>
+					</div>
+					{{/if}} {{/each}}
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="template2">
+			{{each(i,v) data}}
+			<div class="Classfy mui-control-content" id="class${i+1}">
+				<div class="swiper-container${i}">
+					<div class="swiper-wrapper">
+						{{each(j,n) data[i].child}}
+						<div class="swiper-slide" id="shop${i}${j}">
+							
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<script type="text/html" id="template3">
+			{{each(x,m) listdata}}
+							<section>
+								<div class="left_img"><a href="GoodIntr.html?&id=${m.id}"><img src="${m.pics.pic}"></a></div>
+								<div class="right">
+									<h2>${m.title}</h2>
+									<p>${m.number_min}${m.number_dw}起订</p>
+									<h3>￥
+										{{if istoken() && istokenlogin}}
+										${m.skuprice_format.price1}
+										{{else}}
+										${m.skuprice_format.price2}
+										{{/if}}
+										/${m.number_dw}</h3>
+									<div class="right_size">
+										<div class="left minus"><img src="img/classification/reduce.png"></div>
+										<p>
+											{{if m.number_min<1}}
+												0
+												{{else}}
+											${m.number_min-1}
+											{{/if}}
+										</p>
+										<div class="right add"><img src="img/classification/add.png"></div>
+									</div>
+								</div>
+							</section>
+							{{/each}}
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src='js/commonfuc.js'></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/ajax/classAjax.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+	</body>
+
+</html>

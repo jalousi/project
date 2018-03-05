@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>个人中心</title>
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="My_wallet My_integral">
+		<header>
+			<h2>我的积分</h2>
+			<p>
+				0
+			</p>
+		</header>
+		<article>
+			<h3>全部明细</h3>
+			<div class="balance_list">
+				<!--<section>
+					<div class="left">
+						<h3>支付订单</h3>
+						<p>2017.11.13 12:39:43</p>
+					</div>
+					<div class="right">
+						<h3>-99.90</h3>
+						<p>余额：￥900.10</p>
+					</div>
+				</section>
+				<section>
+					<div class="left">
+						<h3>支付订单</h3>
+						<p>2017.11.13 12:39:43</p>
+					</div>
+					<div class="right">
+						<h3>-99.90</h3>
+						<p>余额：￥900.10</p>
+					</div>
+				</section>
+				<section>
+					<div class="left">
+						<h3>支付订单</h3>
+						<p>2017.11.13 12:39:43</p>
+					</div>
+					<div class="right">
+						<h3>-99.90</h3>
+						<p>余额：￥900.10</p>
+					</div>
+				</section>
+				<section>
+					<div class="left">
+						<h3>支付订单</h3>
+						<p>2017.11.13 12:39:43</p>
+					</div>
+					<div class="right">
+						<h3>-99.90</h3>
+						<p>余额：￥900.10</p>
+					</div>
+				</section>
+				<section>
+					<div class="left">
+						<h3>支付订单</h3>
+						<p>2017.11.13 12:39:43</p>
+					</div>
+					<div class="right">
+						<h3>-99.90</h3>
+						<p>余额：￥900.10</p>
+					</div>
+				</section>-->
+			</div>
+		</article>
+		<script type="text/html" id="template1">
+			{{each listdata}}
+			<section>
+					<div class="left">
+						<h3>${$value.remark}</h3>
+						<p>${$value.creat_at}</p>
+					</div>
+					<div class="right">
+						<h3>${$value.value_type}${changeTwoDecimal_f(Math.abs($value.value))}</h3>
+					</div>
+				</section>
+				{{/each}}
+		</script>
+		<script type="text/html" id="template2">
+			<div class="empty">
+				<div class="sky_img"><img src="img/personal/personal_integral_record.png"></div>
+				<p>您当前还没有积分记录哟</p>    
+			</div>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/ajax/My_integral.js"></script>
+		<script>
+		$(function() { FastClick.attach(document.body);});
+		</script>
+	</body>
+
+</html>

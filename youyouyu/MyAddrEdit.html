@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>添加地址</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/mui.picker.css" rel="stylesheet" type="text/css" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" type="text/css" />
+		<link href="css/common.css" rel="stylesheet" type="text/css" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="MyAddrs">
+        
+		<!--主体 begin-->
+		<div class="Conter">
+			<div class="wraper">
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">收货人</label>
+						<div class="w-bar-control"><input id="Name" pro="input" type="text" placeholder="收货人姓名"></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">联系方式</label>
+						<div class="w-bar-control"><input id="Phone" pro="input" type="number" maxlength="11" placeholder="联系方式必须填"></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">所在城市</label>
+						<div class="w-bar-control">
+							<a href="javascript:void(0);" class="selectaddr" id="sel_city"><input id="cityResult3" readonly placeholder="请选择您所在的城市"><img class="selectaddr" src="img/next.png"></a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-inputBar-textarea w-bar">
+						<div class="w-bar-control"><textarea id="Address" pro="input" placeholder="请在此区域填写具体的门牌号或者详细地址"></textarea></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar w-setmoren">
+						<label class="w-bar-label">设为默认</label>
+						<div class="w-bar-control">
+							<div class="setmoren"><label><input class="mui-switch-animbg mui-switch-anim" id="setMorenBtn" type="checkbox"></label></div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 --> 
+		<div class="footer">
+			<button class="save">保存</button>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="mui/mui.picker.js"></script>
+	<script src="mui/mui.poppicker.js"></script>
+	<script src="mui/city.data-3.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/commonfuc.js"></script>
+	<script src="js/ajax/MyAddrEdit.js"></script>
+	<script>
+		var cityname,cityid;
+		(function($, doc) {
+				$.init();
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param {Object} obj 对象
+					 * @param {String} param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var showCityPickerButton = doc.getElementById('sel_city');
+					var cityResult3 = doc.getElementById('cityResult3');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker3.show(function(items) {
+							cityResult3.value = _getParam(items[0], 'name') + " " + _getParam(items[1], 'name') + " " + _getParam(items[2], 'name');
+//					     存城市地址和城市ID
+					     if(_getParam(items[2], 'name')){
+					     	cityname= _getParam(items[0], 'name') + "," + _getParam(items[1], 'name') + "," + _getParam(items[2], 'name');
+					     	cityid= _getParam(items[0], 'id') + "," + _getParam(items[1], 'id') + "," + _getParam(items[2], 'id');	
+					     }else{
+					     	cityname= _getParam(items[0], 'name') + "," + _getParam(items[1], 'name');
+					     	cityid= _getParam(items[0], 'id') + "," + _getParam(items[1], 'id');
+					     }
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+				});
+				})(mui, document);
+	</script>
+</html>

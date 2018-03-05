@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>首页</title>
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/swiper.min.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+<!--		<script src="js/isweixin.js"></script>-->
+	</head>
+
+	<body class="index">
+		<div class="header">
+			<div class="banner" id="banner">
+                  
+			</div>
+		</div>
+		<div class="nav">
+			<ul>
+				<a href="classify.html">
+					<li>
+						<i></i>
+						<p>我要下单</p>
+					</li>
+				</a>
+				<a href="My_order.html">
+					<li>
+						<i></i>
+						<p>我的订单</p>
+					</li>
+				</a>
+				<a href="shopping_cart.html">
+					<li>
+						<i></i>
+						<p>购物车</p>
+					</li>
+				</a>
+				<a href="contact_way.html">
+					<li>
+						<i></i>
+						<p>联系我们</p>
+					</li>
+					</a>
+			</ul>
+		</div>
+		<div class="main1">
+			
+	
+		</div>
+		<div class="main2">
+			<h2>新品尝鲜</h2>
+			<ul id="xpcx">
+				<!--<li>
+					<a href="shopping_list.html"><img src="img/exaple/guanggao.png"></a>
+				</li>
+				<li>
+					<img src="img/exaple/guanggao.png">
+				</li>
+				<li>
+					<img src="img/exaple/guanggao.png">
+				</li>
+				<li>
+					<img src="img/exaple/guanggao.png">
+				</li>-->
+			</ul>
+		</div>
+		<div class='main3'>
+			<h2>精品推荐</h2>
+			<ul id="jptj">
+				
+			</ul>
+		</div>
+		<div class="footer_blank"></div>
+		<div class="footer">
+			<div class="footernav">
+				<ul>
+					<li>
+						<a class="nav-active" href="index.html">
+							<i></i>
+							<p>首页</p>
+						</a>
+					</li>
+					<li>
+						<a href="classify.html">
+							<i></i>
+							<p>分类</p>
+						</a>
+					</li>
+					<li>
+						<a href="shopping_cart.html">
+							<i><span class="mui-badge"></span></i>
+							<p>购物车</p>
+						</a>
+					</li>
+					<li>
+						<a href="My_center.html">
+							<i></i>
+							<p>我的</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+<script type="text/html" id="template1">
+                  <div class="swiper-container">
+					<div class="swiper-wrapper">
+						{{each flash}}
+						<div class="swiper-slide">
+							<a href="${$value.links_url}"><div class="img"><img src="${$value.data_json.pic}" /></div></a>
+						</div>
+						{{/each}}
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+</script>
+<script type="text/html" id="template2">
+	<a href="snap_up.html">
+				<h2>限时抢购</h2>
+			</a>
+			<div class="rushlist">
+					<div class="swiper-container1">
+					<div class="swiper-wrapper">
+						{{each xsqg.goodslist}}
+						<div class="swiper-slide">
+							<a href="GoodIntr.html?&id=${$value.id}">
+								<section>
+									<div class="img"><img src="${$value.pics.pic}">
+									</div>
+									<h3>${$value.title}</h3>
+									<p><span>¥${$value.skuprice_format.price1}/</span>${$value.skuprice.dw_name}</p>
+								</section>
+							</a>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+</script>
+<script type="text/html" id="template3">
+	{{each data}}
+                  <li>
+					<a href="${$value.links_url}"><img src="${$value.data_json.pic}"></a>
+				</li>
+	{{/each}}
+</script>
+<script type="text/html" id="template4">
+	{{each jp.goodslist}}
+                  <li>
+					<a href="GoodIntr.html?&id=${$value.id}">
+						<h3>${$value.title}</h3>
+						<div><img src="${$value.pics.pic}"></div>
+						<p><span>¥${$value.skuprice_format.price1}/</span>${$value.skuprice.dw_name}</p>
+					</a>
+				</li>
+	{{/each}}
+</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/ajax/index.js"></script>
+		<script>
+			//			判定手机版本
+			var u = navigator.userAgent;
+			var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+			//var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+			if(isAndroid) {
+				$('.index .header .banner').css('background-image', 'linear-gradient(to bottom,#373a41,rgba(55,59,62,0.67))')
+			}
+
+			//			banner轮播
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+	</body>
+</html>

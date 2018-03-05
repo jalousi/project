@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>退货申请</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="retreatFor">
+		<article>
+		<div class="explain">
+			<h2>退货理由说明：</h2>
+			<p>
+				<textarea placeholder="请您输入退货详细说明，最多200字。"></textarea>
+			</p>
+		</div>
+		<div class="uploadImg">
+			<h2><p>上传照片:</p><span>最多上传6张</span></h2>
+			<div class="loading">
+				<ul>
+					
+					<div class="uploadImg-click">
+					<input type="file" class="file" claccept="images/" id="fileSelect" multiple="multiple">
+					<p><span>0</span>/6</p>
+				</div>
+				</ul>
+			</div>
+		</div>
+		<div class="Money mui-input-group">
+			<h3>输入退货金额：</h3><label><input type="number" placeholder="请填入协商退货金额！"/></label>
+		</div>
+		<div class="submit">
+			<a><button>提交申请</button></a>
+		</div>
+		</article>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/ajax/retreatFor.js"></script>
+		<script>
+		$(function() { FastClick.attach(document.body);});
+		</script>
+	</body>
+
+</html>

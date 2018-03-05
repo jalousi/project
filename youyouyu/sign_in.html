@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>悠悠雨注册</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="Login sign">
+		<header>
+		<div class="logo"></div>
+		<p>长沙市菜篮子直销工程</p>
+		</header>
+<!--		步骤一-->
+		<div class="logn_in step1">
+		<article>
+			<h2>基本信息填写</h2>
+			<section class="phone">
+				<p>手机号码</p>
+				<input type="number" id="Phone" placeholder="请输入您的手机号码"/>
+			</section>
+			<section class="tppassword">
+				<p>图片验证</p>
+				<input type="text" placeholder="请输入图片验证码" id="imgnumber"/>
+				<div class="imgcaptcha"><img src="img/juxiing.png" alt="图片验证码"></div>
+			</section>
+			<section class="sjpassword">
+				<p>动态验证</p>
+				<input type="number" id="auth_code" placeholder="请输入手机验证码"/>
+				<div class="captcha">获取验证码</div>
+			</section>
+			<a href="javascript:void(0)" id="step1"><button>下一步</button></a>
+		</article>
+		</div>
+<!--		步骤二-->
+		<div class="logn_in step2 none">
+			<article>
+			<h2>设置登录密码</h2>
+			<section class="phone">
+				<p>密码设置</p>
+				<input type="password" id="password" placeholder="请设置登录密码"/>
+			</section>
+			<section class="sjpassword">
+				<p>确认密码</p>
+				<input type="password" id="topassword" placeholder="请再次确认登录密码"/>
+			</section>
+			<a href="javascript:void(0)" id="step2"><button>下一步</button></a>
+		</article>
+		</div>
+		<!--步骤三-->
+		<div class='step3 logn_in material none'>
+			<article>
+			<h2>商户资料确认</h2>
+			<section class="phone">
+				<p>真实姓名</p>
+				<input type="text" id="name" placeholder="请输入您的真实姓名"/>
+			</section>
+			<section class="datum">
+				<p>商户名称</p>
+				<input type="text" id="SHname" placeholder="请输入您的店铺名称"/>
+			</section>
+			<div class="card">
+				<div class="left">
+					<p>个人身份证正面照片</p>
+					<div><input type="file" class="file" accept="images/" id="fileSelect1"><img src="img/login/plus@3x.png"></div>
+				</div>
+				<div class="right">
+					<p>个人身份证反面照片</p>
+					<div><input type="file" class="file" accept="images/" id="fileSelect2"><img src="img/login/plus@3x.png"></div>
+				</div>
+			</div>
+			<div class="charter">
+				<div>
+				<p>商户营业执照正面照片</p>
+				<div><input type="file" class="file" claccept="images/" id="fileSelect3"><img src="img/login/plus@3x.png"></div>
+				</div>
+			</div>
+			<a href="javascript:void(0)" id="step3"><button>完成注册</button></a>
+		</article>
+		</div>
+		<div class="SignPop none">
+			<div class="popcontent">
+				<div class="img"><img src="img/tjcg3x.png"></div>
+				<h2>提交成功</h2>
+				<div class="content">
+					<p>工作人员正在人工审核您的信息<br>
+					我们会在三天工作日内完成您的审核<br>
+					请保持电话畅通
+					</p>
+				</div>
+				<div class="button">
+					<button>先去逛逛</button>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src='mui/mui.min.js'></script>
+		<script src='js/commonfuc.js'></script>
+		<script src="js/fastclick.js"></script>
+		<script>
+			var mask = mui.createMask();//callback为用户点击蒙版时自动执行的回调；
+		$(function() { FastClick.attach(document.body);});
+//		$('.captcha').bind('click',function(){
+//			$(this).addClass('click');
+//		})
+		</script>
+		<script src="js/ajax/SignIn.js"></script>
+	</body>
+
+</html>

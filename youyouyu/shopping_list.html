@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>商品列表</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="snap_up shopping_list">
+		<div class="serchbox">
+			<div class="mui-input-row">
+				<img src="img/classification/search.png">
+				<input id="search" type="search" class="mui-input-clear" placeholder="悠悠雨林叶菜一号">
+			</div>
+			<p>搜索</p>
+		</div>
+		<article id="classify1">
+			<!--<section>
+				<div class="left_img"><img src="img/exaple/shagnping2.png"></div>
+				<div class="right">
+					<h2>悠悠雨林叶菜一号3</h2>
+					<div class="bottom">
+						<h3>5斤起订</h3>
+						<p>￥8.80/斤</p>
+					</div>
+					<div class="right_size">
+						<div class="left"><img src="img/classification/reduce.png"></div>
+						<p>1</p>
+						<div class="right"><img src="img/classification/add.png"></div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="left_img"><img src="img/exaple/shagnping2.png"></div>
+				<div class="right">
+					<h2>悠悠雨林叶菜一号3</h2>
+					<div class="bottom">
+						<h3>5斤起订</h3>
+						<p>￥8.80/斤</p>
+					</div>
+				</div>
+				<div class="right_size">
+					<div class="left"><img src="img/classification/reduce.png"></div>
+					<p>1</p>
+					<div class="right"><img src="img/classification/add.png"></div>
+				</div>
+			</section>-->
+		</article>
+		<script type="text/html" id="template1">
+			{{each listdata}}
+			<a href="GoodIntr.html?&id=${$value.id}">
+			<section>
+				<div class="left_img"><img src="${$value.pics.pic}"></div>
+				<div class="right">
+					<h2>${$value.title}</h2>
+					<div class="bottom">
+						<h3>${$value.number_min}${$value.number_dw}起订</h3>
+						<p>￥${$value.skuprice_format.price1}/${$value.number_dw}</p>
+					</div>
+				</div>
+			</section>
+			</a>
+			{{/each}}
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+
+				function right_size() {
+					$('.shopping_list article section .right_size').bind('click', function() {
+						$(this).addClass('click');
+						var $this = $(this);
+						setTimeout(function() {
+							$this.find('p').show();
+							$this.find('.left').show();
+						}, 450);
+					})
+				}
+				$('.serchbox p').bind('tap', function() {
+					var serchValue = $('.serchbox input').val();
+					if(serchValue) {
+						shopping_listAjax(serchValue);
+					} else {
+						$('.serchbox input').attr('placeholder', '请输入要搜索的商品');
+					}
+				});
+				var value = localStorage.getItem('serchval');
+				$('.serchbox input').attr('value',value);
+				shopping_listAjax(value);
+				function shopping_listAjax(title) {
+					var datas = {
+						title: title
+					};
+					datas = api_com_ps(datas);
+					//					console.log(JSON.stringify(datas));
+					var opsx = {
+						url: commonUrl + 'store/shopGoodsSearch',
+						method: 'get',
+						data: datas,
+						datatype: 'json',
+					};
+					api_call(opsx, function(data) {
+						users = data.data;
+						$('#classify1 *').remove();
+						$('#template1').tmpl(users).appendTo('#classify1');
+						right_size();
+					})
+				}
+			});
+		</script>
+	</body>
+
+</html>

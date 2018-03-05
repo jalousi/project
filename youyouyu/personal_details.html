@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>个人信息</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="mui/mui.min.js"></script>
+	</head>
+
+	<body class="personal_details">
+		<div id="details">
+
+		</div>
+		<div class="quit"><button>退出登录</button></div>
+		<script type="text/html" id="template1">
+			<section>
+				<a href="javascript:void(0)">
+					<p>头像</p>
+					<div>
+						<input type="file" class="file" accept="images/" id="fileSelect"><img src="${data_json.pic}"></div>
+				</a>
+			</section>
+			<section>
+				<a href="Amendshop_name.html?&name=shopname">
+					<p>店铺名称</p>
+					<div>${shopname}</div>
+				</a>
+			</section>
+			<section>
+				<a href="Amendshop_name.html?&name=realname">
+					<p>负责人</p>
+					<div>${realname}</div>
+				</a>
+			</section>
+			<section>
+				<a href="Amendshop_name.html?&name=phone">
+					<p>联系电话</p>
+					<div>${phone}</div>
+				</a>
+			</section>
+		</script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+			$(function() {
+				$('.quit button').bind('click', function() {
+					var btnArray = ['取消', '确定'];
+					mui.confirm('您确定退出登录吗', '悠悠雨', btnArray, function(e) {
+						if(e.index == 1) {
+							localStorage.setItem('m_openid', '');
+							if(! istoken()) {
+								mui.toast('成功退出登录');
+								setTimeout(function(){
+									window.location.href = 'login.html';
+								},100);
+							}
+						}
+					})
+				})
+				var datas = {
+					token: localStorage.getItem('m_openid')
+				}
+				datas = api_com_ps(datas);
+				//				console.log(JSON.stringify(datas));
+				var opsx = {
+					url: commonUrl + 'store/getData',
+					method: 'get',
+					data: datas,
+					datatype: 'jsonp',
+				};
+				api_call(opsx, function(data) {
+					var users = data.data;
+					$('#template1').tmpl(users).appendTo('#details')
+					amend();
+				});
+				
+			})
+		</script>
+		<script src="js/ajax/amend_details.js"></script>
+	</body>
+
+</html>

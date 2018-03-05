@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>个人中心</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+		<!--<script type="text/javascript">
+			var wxid = localStorage.getItem("m_openid");
+			if(!wxid) {
+				window.location.href = 'login.html';
+			};
+		</script>-->
+	</head>
+
+	<body class="My_center">
+		<header>
+			<a href="personal_details.html" id="My_center">
+
+			</a>
+		</header>
+		<article>
+			<div class="order">
+				<a href="My_order.html">
+					<h2>我的订单</h2></a>
+				<ul>
+					<a href="My_order.html?index=0">
+						<li>
+							<div></div>
+							<p>全部</p>
+						</li>
+					</a>
+					<a href="My_order.html?index=1">
+					<li>
+						<div></div>
+						<p>预配中</p>
+					</li>
+					</a>
+					<a href="My_order.html?index=2">
+					<li>
+						<div></div>
+						<p>待收货</p>
+					</li>
+					</a>
+					<a href="My_order.html?index=3">
+					<li>
+						<div></div>
+						<p>退换货</p>
+					</li>
+					</a>
+				</ul>
+			</div>
+			<div class="content">
+				<ul>
+					<a href="My_wallet.html">
+						<li>
+							<div></div>
+							<p>我的钱包</p>
+						</li>
+					</a>
+					<a href="My_integral.html">
+						<li>
+							<div></div>
+							<p>我的积分</p>
+						</li>
+					</a>
+					<a href="My_coupon.html">
+						<li>
+							<div></div>
+							<p>优惠券</p>
+						</li>
+					</a>
+					<a href="MyAddrManage.html">
+						<li>
+							<div></div>
+							<p>收货地址</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</article>
+		<div class="footer_blank"></div>
+		<div class="footer">
+			<div class="footernav">
+				<ul>
+					<li>
+						<a href="index.html">
+							<i></i>
+							<p>首页</p>
+						</a>
+					</li>
+					<li>
+						<a href="classify.html">
+							<i></i>
+							<p>分类</p>
+						</a>
+					</li>
+					<li>
+						<a href="shopping_cart.html">
+							<i><span class="mui-badge"></span></i>
+							<p>购物车</p>
+						</a>
+					</li>
+					<li>
+						<a class="nav-active" href="My_center.html">
+							<i></i>
+							<p>我的</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+<script type="text/html" id="template1">
+   <div><img src="${data_json.pic}"></div>
+				<h3>${realname}</h3>
+				<p>${account}</p>
+</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/spin.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script>
+			if(! istoken()){
+				promptLogin();
+			}
+		</script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+		<script>
+			$(function() {
+				var mask=spinMask();
+				refreshTrolley_badge();
+				mask.show();
+				var datas={
+					token:localStorage.getItem('m_openid')
+				}
+				datas=api_com_ps(datas);
+//				console.log(JSON.stringify(datas));
+				var opsx = {
+					url: commonUrl + 'store/getData',
+					method: 'get',
+					data: datas,
+					datatype: 'jsonp',
+				};
+				api_call(opsx, function(data) {
+					if(data.code==1){
+						var users=data.data;
+					    $('#template1').tmpl(users).appendTo('#My_center')
+					}else{
+						mui.toast('请重新登录！');
+						setTimeout(function(){
+							window.location.href='login.html';
+						},500);
+					}
+					mask.close();
+				});
+			})
+			
+		</script>
+	</body>
+
+</html>

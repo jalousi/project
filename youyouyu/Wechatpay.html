@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>微信支付</title>
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="recharge">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script></script>
+		<script type="text/javascript" src="js/app_init.js"></script>
+		<script>
+	var xcode = getQueryString('code');
+	var openid;
+	if(!is_null(xcode)) {
+		getWebAccessToken();
+		function getWebAccessToken() {
+			var ajaxurl = commonUrl + "weixin/getWebAccessToken";
+			var ps = {
+				code: xcode
+			};
+			ps = api_com_ps(ps);
+			$.post(ajaxurl, ps, function(json) {
+				var jjj = JSON.parse(json);
+				openid = jjj.data.openid;
+				callpay();
+			});
+		}
+	}
+	function jsApiCall() {
+		var ajaxurl = commonUrl + "pay/payWeixinJsCzYue";
+		var ps = {
+			token: localStorage.getItem('m_openid'),
+			orderid: localStorage.getItem('orderid'),
+			openid: openid
+		};
+		ps = api_com_ps(ps);
+		$.post(ajaxurl, ps, function(json) {
+			var jjj = JSON.parse(json);
+			WeixinJSBridge.invoke(
+				'getBrandWCPayRequest',
+				//json.data,
+				jjj.data,
+				function(res) {
+					//func_loading("hide")
+					WeixinJSBridge.log(res.err_msg);
+					//                      alert(res.err_desc);
+					//                      alert(res.err_msg);
+					//                      alert(res.err_code+res.err_desc+res.err_msg);
+					if(res.err_msg.indexOf(":ok") != -1) {
+						history.replaceState(null,'个人中心','My_center.html');
+						var rurl = "recharge.html";
+						window.location.href =rurl;
+					} else {
+						alert("支付失败");
+						var rurl = "recharge.html";
+						window.location.href = rurl;
+					}
+				}
+			);
+		});
+	}
+
+	function callpay() {
+		//layer.close(ltem)
+		if(typeof WeixinJSBridge == "undefined") {
+			if(document.addEventListener) {
+				document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+			} else if(document.attachEvent) {
+				document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+				document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+			}
+		} else {
+			jsApiCall();
+		}
+	}
+	</script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>我的优惠券</title>
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/swiper.min.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="My_order My_coupon">
+		<nav>
+			<span class="border"></span>
+			<ul>
+				<li class="selected">未使用</li>
+				<li>已使用</li>
+				<li>已过期</li>
+			</ul>
+		</nav>
+		<div class="couponList">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="unused">
+							
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="used main_color">
+							
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="expired main_color">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/html" id="template1">
+			{{each data}}
+			<section>
+				<div class="left">
+					<div class="left1">
+						优<br>惠<br>券
+					</div>
+					<div class="left2">
+						<span>¥</span>
+						<span>${$value.use_json.money}</span>
+					</div>
+				</div>
+				<div class="right">
+					<div>
+						<h2>悠悠雨林${$value.use_json.money}元优惠券</h2>
+						<p>订单满${$value.use_json.use_money}元可用</p>
+						{{if  $value.use_json.use_etime=='' }}
+						<p>有效期:永久有效</p>
+						{{else}}
+						<p>有效期:${$value.use_json.use_etime}</p>
+						{{/if}}
+					</div>
+				</div>
+			</section>
+			{{/each}}
+		</script>
+		<script type="text/html" id="template2">
+			<div class="empty">
+				<div class="sky_img"><img src="img/personal/personal_coupons_nocoupons.png"></div>
+				<p>您当前还没有优惠券哟</p>
+			</div>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/ajax/couponAjax.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>充值中心</title>
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="recharge">
+		<header>
+			<h2>当前余额</h2>
+			<h3>￥<span>0.00</span></h3>
+		</header>
+		<article>
+			<div class="phone">
+				<h3>133 1234 5678</h3>
+				<p>当前手机账号</p>
+			</div>
+			<div class="money_list">
+				
+			</div>
+			<div class="rule">
+				<h2>充值规则</h2>
+				<div></div>
+			</div>
+		</article>
+		<div class="footer_blank"></div>
+		<div class="bottom">
+			<span>微信充值¥</span><span class="msize"></span>
+		</div>
+		<script type="text/html" id="template1">
+			{{each data}}
+			{{if $index==0}}
+			<section class="selected">${$value.data_json.price_max}</section>
+			{{else}}
+			<section>${$value.data_json.price_max}</section>
+			{{/if}}
+			{{/each}}
+			<section><input type="number" placeholder="其他金额"></section>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/ajax/rechargeAjax.js"></script>
+		<script>
+		$(function() { FastClick.attach(document.body);});
+		</script>
+	</body>
+
+</html>

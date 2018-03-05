@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>立即抢购</title>
+		<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+		<link href="css/common.css" type="text/css" rel="stylesheet">
+		<link href="css/main.css" type="text/css" rel="stylesheet">
+	</head>
+
+	<body class="snap_up">
+		<header>
+			<p>正在抢购中…</p>
+			<div>
+				还有<span>00</span>:<span>00</span>:<span>00</span>结束
+			</div>
+		</header>
+		<article id="snap_up">
+			<!--<section>
+				<div class="left_img"><img src="img/exaple/shagnping2.png"></div>
+				<div class="right">
+					<h2>悠悠雨林叶菜一号3</h2>
+					<div class="bottom">
+					<h3><span>￥69.90</span><span>￥109.90</span></h3>
+					<p>正在抢购中...</p>
+					</div>
+					<div class="right_size over">
+						已售罄
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="left_img"><img src="img/exaple/shagnping2.png"></div>
+				<div class="right">
+					<h2>悠悠雨林叶菜一号3</h2>
+					<div class="bottom">
+					<h3><span>￥69.90</span><span>￥109.90</span></h3>
+					<p>正在抢购中...</p>
+					</div>
+				</div>
+				<div class="right_size">
+						<a href="GoodIntr.html">立即抢购</a>
+					</div>
+			</section>-->
+		</article>
+		<script type="text/html" id="template1">
+			{{each goodslist}}
+			<section>
+				<div class="left_img"><img src="${$value.pics.pic}"></div>
+				<div class="right">
+					<h2>${$value.title}</h2>
+					<div class="bottom">
+						<h3><span>￥
+							{{if istoken()}}
+							${$value.skuprice_format.price1}
+							{{else}}
+							${$value.skuprice_format.price2}
+							{{/if}}
+						</span><span>￥${$value.skuprice.price_sell}</span></h3>
+						<p>正在抢购中...</p>
+					</div>
+				</div>
+				{{if parseInt($value.skuprice.sku)>0}}
+				<div class="right_size">
+					<a href="GoodIntr.html?&id=${$value.id}">立即抢购</a>
+				</div>
+				{{else}}
+				<div class="right_size over">
+					已售罄
+				</div>
+				{{/if}}
+			</section>
+			{{/each}}
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/commonfuc.js"></script>
+		<script src="js/app_init.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+				indexAjax();
+
+				function indexAjax() {
+					var datas = {
+						loadid: 'xsqg',
+						loadid_xsqg_num:20
+					};
+					datas = api_com_ps(datas);
+					//				console.log(JSON.stringify(datas));
+					var opsx = {
+						url: commonUrl + 'store/index',
+						method: 'get',
+						data: datas,
+						datatype: 'json',
+					};
+					api_call(opsx, function(data) {
+						var users = data.data.xsqg;
+						if(!users == ' ') {
+							//					console.log(JSON.stringify(users));
+							$('#template1').tmpl(users).appendTo('#snap_up');
+							getTime(users.timelist.end_time_int);
+						} else {
+							mui.toast('暂无抢购商品');
+						}
+					});
+				}
+			});
+
+			function getTime(end_time_int) {
+				var span1 = $('header div span').eq(0);
+				var span2 = $('header div span').eq(1);
+				var span3 = $('header div span').eq(2);
+
+				function Time() {
+					var timestamp = Date.parse(new Date());
+					//          if(timestamp < end_time_int){
+					var spacing_time = end_time_int - timestamp;
+					var spacing_time = spacing_time / 1000;
+					var showhour = parseInt(spacing_time / 3600)
+					var showmin = parseInt(spacing_time % 3600 / 60);
+					var showsec = spacing_time % 60;
+					if(showsec < 10) {
+						showsec = "0" + showsec;
+					}
+					if(showmin < 10) {
+						showmin = "0" + showmin;
+					}
+					if(showhour < 10) {
+						showhour = "0" + showhour;
+					}
+					span1.html(showhour);
+					span2.html(showmin);
+					span3.html(showsec);
+					if(showhour == "00" && showmin == "00" && showsec == "00") {
+						clearInterval(t);
+					}
+					//      }else{
+					//      	mui.toast('抢购已过时');
+					//      }
+					}
+					Time();
+					var t = setInterval(Time, 1000);
+			}
+		</script>
+
+	</body>
+
+</html>
