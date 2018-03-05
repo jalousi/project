@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中航网校</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css" />
+		<link type="text/css" rel="stylesheet" href="css/animate.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper2.7.6.css" />
+	</head>
+
+	<body class="subect">
+		<div class="header">
+			<div class="logo"><img src="img/tabLOGO.png"></div>
+			<ul>
+				<li>
+					<a href="index.html">首页</a>
+				</li>
+				<li>
+					<a href="About_Us.html">公司介绍</a>
+				</li>
+				<li class="seleced">
+					<a href="subjectSet.html">科目设置</a>
+				</li>
+				<li>
+					<a href="Test_Consulting.html">考试资讯</a>
+				</li>
+				<li>
+					<a href="data_download.html">资料下载</a>
+				</li>
+				<li>
+					<a href="score_inquiry.html">成绩查询</a>
+				</li>
+				<li>
+					<a href="contact_us.html">联系我们</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navimg">
+
+		</div>
+		<div class="artical">
+			<div class="main-center">
+				<h2><p>科目选择</p></h2>
+				<ul class="subNav">
+					<li class="seleced">学历教育</li>
+					<li>职业培训</li>
+					<li>事业单位招考</li>
+					<li>校企合作</li>
+				</ul>
+				<div class="classify2">
+
+				</div>
+				<div class="subList">
+               
+				</div>
+			</div>
+			<div id="see_more">
+				<button>查看更多</button>
+			</div>
+		</div>
+		<div class="payment-mask mask1">
+			<div class="payment">
+				<div class="closeImg">
+					<img src="img/close.png">
+				</div>
+			</div>
+		</div>
+		<div class="payment-mask mask2">
+			<div class="subscribe">
+				<div class="closeImg">
+					<img src="img/close.png">
+				</div>
+				<h2>在线预约</h2>
+				<div class="message">
+					<label class="name"><span>姓名</span><input type="text" name="name"></label>
+					<label class="phone"><span>电话</span><input type="text" name="phone"></label>
+					<label class="subject"><span>预约科目</span><input type="text" name="subject"></label>
+					<label class="email"><span>电子邮箱</span><input type="text" name="email"></label>
+				</div>
+				<div class="submit"><button>提交预约信息</button></div>
+			</div>
+		</div>
+<div class="footer">
+				<div class="footer-center">
+					<div class="left">
+						<div class="footerLogo"><img src="img/bottomlogo.png"></div>
+						<P>湖南中航慧谷教育科技有限公司</P>
+					</div>
+					<div class="right">
+						<ul>
+				<li><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+						</ul>
+						<div class="message">
+							<ul>
+								
+							</ul>
+							<div class="QR-code">
+								<img src="img/RXcode.png">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="records">
+					©2017中航网校有限公司丨湘公网安备 110315456151515丨湘ICP备354651561023
+				</div>
+		</div>
+		<script type="text/html" id="footer">
+			<li>邮箱：${data.gsyx}</li>
+			<li>手机：${data.gsyx}</li>
+			<li>电话：${data.dh1}</li>
+			<li>QQ：${data.gsqq}</li>
+		</script>
+		<script type="text/html" id="navimg">
+			<img src="${data[0].imgurl}">
+		</script>
+		<script type="text/html" id="classify2">
+			<div class="swiper-container1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<ul>
+							{{each sxljy}}
+							{{if $index==0}}
+							<li name="${$value.kclx}" class="seleced">
+							{{else}}
+							<li name="${$value.kclx}">
+							{{/if}}
+								<div class="top">
+									<img src="${$value.url}">
+								</div>
+								<h3>${$value.name}</h3>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+					<div class="swiper-slide">
+						<ul>
+							{{each szypx}}
+							{{if $index==0}}
+							<li name="${$value.kclx}" class="seleced">
+							{{else}}
+							<li name="${$value.kclx}">
+							{{/if}}
+								<div class="top">
+									<img src="${$value.url}">
+								</div>
+								<h3>${$value.name}</h3>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+					<div class="swiper-slide">
+						<ul>
+							{{each ssydwzk}}
+							{{if $index==0}}
+							<li name="${$value.kclx}" class="seleced">
+							{{else}}
+							<li name="${$value.kclx}">
+							{{/if}}
+								<div class="top">
+									<img src="${$value.url}">
+								</div>
+								<h3>${$value.name}</h3>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+					<div class="swiper-slide">
+						<ul>
+							{{each sxqhz}}
+							{{if $index==0}}
+							<li name="${$value.kclx}" class="seleced">
+							{{else}}
+							<li name="${$value.kclx}">
+							{{/if}}
+								<div class="top">
+									<img src="${$value.url}">
+								</div>
+								<h3>${$value.name}</h3>
+							</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="subList0">
+			<ul>
+				{{each data}}
+				<li id="${$value.id}">
+					<div class="left-img">
+						<img src="${$value.imgurl}">
+					</div>
+					<div class="right-messge">
+						<h2>${$value.title}</h2>
+						<h3>${$value.synopsis}</h3>
+						<p>授课方式：<span>${$value.way}</span></p>
+						<p>适合人群：<span>${$value.people}</span></p>
+						<p>课程学时：<span>${$value.course}</span></p>
+						<h4 class="price">价格：<span>${$value.price}</span></h4>
+						<div class="purchase">
+							<button>立即购买</button>
+							<div class="level2">
+								<button class="level2top">预约</button>
+								<button class="level2bottom">缴费</button>
+							</div>
+						</div>
+					</div>
+				</li>
+				{{/each}}
+			</ul>
+		</script>
+		<script type="text/html" id="subList1">
+			<div class="schools">
+				{{each data}}
+				<div class="section" id="${$value.id}">
+					<div class="Topimg"><img src="${$value.imgurl}"/></div>
+					<p>${$value.title}</p>
+				</div>
+				{{/each}}
+			</div>
+		</script>
+		<script type="text/html" id="subList2">
+			<div class="mien">
+				{{each data}}
+				<div class="section" id="${$value.id}">
+					<div class="Topimg"><img src="${$value.imgurl}"/></div>
+					<p>${$value.title}</p>
+				</div>
+				{{/each}}
+			</div>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.tmpl.js"></script>
+		<script src="js/idangerous.swiper2.7.6.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/jqPaginator.js"></script>
+		<script src="js/ajax/subjectSet.js"></script>
+	</body>
+
+</html>

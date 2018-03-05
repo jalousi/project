@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>中航网校</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css"/>
+		<link type="text/css" rel="stylesheet" href="css/animate.min.css"/>
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper2.7.6.css"/>
+	</head>
+	<body class="home">
+		<div class="header">
+			<div class="logo"><img src="img/tabLOGO.png"></div>
+			<ul>
+				<li class="seleced"><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+			</ul>
+		</div>
+		<div class="nav">
+			
+		</div>
+		<div class="content">
+			<div class="main1">
+				<div class="main1-center">
+					<h2>行业信息</h2>
+					<p>这里整合了跨行业和单个行业的专业信息，是关注专业领域的好途径</p>
+					<div class="main1-content">
+						<div class="main1-1">
+							<div class="top">
+								一级建造师考试
+							</div>
+							<p>备考通关秘籍</br>
+								一举拿下证书
+							</p>
+							<a><button>查看详细攻略</button></a>
+						</div>
+						<div class="main1-2">
+							
+						</div>
+						<div class="main1-3">
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main2">
+				
+			</div>
+			<div class="main3">
+				<div class="main3-center">
+					<h2>最新文件</h2>
+					<p>每天都有最新的文件、公告、政策等咨询更新，请多多关注</p>
+					<div class="main3-content">
+						<div class="main3-1">
+							
+						</div>
+						<div class="main3-2">
+							
+						</div>
+						<div class="main3-3">
+							
+						</div>
+						<div class="main3-4">
+							
+						</div>
+						<div class="main3-5">
+							<a><button>加入我们开始拿证之旅</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main4">
+				
+			</div>
+			<div class="main5">
+				<div class="main5-center">
+					<h2>热门课程信息</h2>
+					<p>我们的课程都是经验丰富的老司机理论实践相结合的心血作品</p>
+					<div class="main5-1">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="payment-mask mask2">
+			<div class="subscribe">
+				<div class="closeImg">
+					<img src="img/close.png">
+				</div>
+				<h2>在线预约</h2>
+				<div class="message">
+					<label class="name"><span>姓名</span><input type="text" name="name"></label>
+					<label class="phone"><span>电话</span><input type="text" name="phone"></label>
+					<label class="subject"><span>预约科目</span><input type="text" name="subject"></label>
+					<label class="email"><span>电子邮箱</span><input type="text" name="email"></label>
+				</div>
+				<div class="submit"><button>提交预约信息</button></div>
+			</div>
+		</div>
+		<div class="footer">
+				<div class="footer-center">
+					<div class="left">
+						<div class="footerLogo"><img src="img/bottomlogo.png"></div>
+						<P>湖南中航慧谷教育科技有限公司</P>
+					</div>
+					<div class="right">
+						<ul>
+				<li><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+						</ul>
+						<div class="message">
+							<ul>
+								
+							</ul>
+							<div class="QR-code">
+								<img src="img/RXcode.png">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="records">
+					©2017中航网校有限公司丨湘公网安备 110315456151515丨湘ICP备354651561023
+				</div>
+		</div>
+		<script type="text/html" id="footer">
+			<li>邮箱：${data.gsyx}</li>
+			<li>手机：${data.gsyx}</li>
+			<li>电话：${data.dh1}</li>
+			<li>QQ：${data.gsqq}</li>
+		</script>
+		<script type="text/html" id="template1">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				{{each data}}
+				{{if $index==0}}
+					<div class="swiper-slide slide${$index+1}">
+						<div class="img"><img src="${$value.imgurl}"></div>
+						<div class="details">
+						<img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0s" src="img/back1.png">
+						<h2 class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">全方位深层次解读公务员考试</h2>
+						<p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">全方位深层次备考<br>2018年国家公务员考试</p>
+						<a href="${$value.imgtourl}" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><button>了解详情>></button></a>
+						</div>
+					</div>
+					{{else ($index==1)}}
+					<div class="swiper-slide slide${$index+1}">
+						<div class="img"><img src="${$value.imgurl}"></div>
+						<div class="details">
+						<img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.0s" src="img/back2.png">
+						<h2 class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">贯穿一生的教育</h2>
+						<p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">教师培训<br>树立终身学习的思想，掌握学习方法</p>
+						<a href="${$value.imgtourl}" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><button>了解详情>></button></a>
+						</div>
+					</div>
+					{{else ($index==2)}}
+					<div class="swiper-slide slide${$index+1}">
+						<div class="img"><img src="${$value.imgurl}"></div>
+						<div class="details">
+						<img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0s" src="img/back3.png">
+						<p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">二级建造师<br>成为项目经理的必经之路</p>
+						<h2 class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">给您的生活提高更好的品质</h2>
+						<a href="${$value.imgtourl}" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><button>了解详情>></button></a>
+						</div>
+					</div>
+					{{else ($index==3)}}
+					<div class="swiper-slide slide4">
+						<div class="img"><img src="${$value.imgurl}"></div>
+						<div class="details">
+						<img class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0s" src="img/back4.png">
+						<p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">遴选面试笔试精讲<br>实战模拟全覆盖</p>
+						<h2 class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.2s">解锁逆袭密码，结构化面试课堂</h2>
+						<a href="${$value.imgtourl}" class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"><button>了解详情>></button></a>
+						</div>
+					</div>
+					{{else ($index>3)}}
+					<div class="swiper-slide slide${$index}">
+						<a href="${$value.imgtourl}"><div class="img"><img src="${$value.imgurl}"></div></a>
+					</div>
+					{{/if}}
+					{{/each}}
+				</div>
+			</div>
+			<div class="pagination"></div>
+			<div class="pagination-Prev"></div>
+			<div class="pagination-Next"></div>
+		</script>
+		<script type="text/html" id="template1-2">
+			<h3><p>行业动态</p><a href="Advisory_details.html?type=mhydt">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template1-3">
+			<h3><p>考试提醒</p><a href="Advisory_details.html?type=mkszx">更多</a></h3>
+							<div class="count_down">
+								<span>倒数日期：</span>
+								<ul>
+									
+								</ul>
+							</div>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template2">
+			<div class="main2-center">
+					<h2>科目设置简介</h2>
+					<p>我们有很多的类别科目供您选择，希望找到合适您的课程</p>
+					<ul>
+						{{each data}}
+						<li>
+							<div class="topimg">
+							</div>
+							<h3>${$value.title}</h3>
+							<p>${$value.content}</p>
+							<a href="${$value.tourl}?id=${$value.id}"><button>立即查看</button></a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+		</script>
+		<script type="text/html" id="template3-1">
+			<h3><p>行业动态</p><a href="Advisory_details.html?type=mhydt">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template3-2">
+			<h3><p>最新公告</p><a href="Advisory_details.html?type=mzxgg">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template3-3">
+			<h3><p>最新政策</p><a href="Advisory_details.html?type=mzxzc">更多</a></h3>
+							<div class="count">
+								<div class="count_down">
+									<img src="img/example/main5-1.png">
+								</div>
+								<ul>
+									{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+								</ul>
+							</div>
+		</script>
+		<script type="text/html" id="template3-4">
+			<h3><p>文案文案</p><a href="Advisory_details.html?type=mwawa">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template4">
+			<div class="main4-center">
+					<h2>学员心声</h2>
+					<p>这里是大家通过中航网校学习交流的地方，希望大家踊跃发言</p>
+					<ul>
+						{{each data}}
+						<li>
+							<figure class="effect-layla">
+								<img src="${$value.imgurl}" alt="img04">
+								<figcaption>
+									<h2>${$value.title}</h2>
+									<p>${$value.synopsis}</p>
+								</figcaption>
+							</figure>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+		</script>
+		<script type="text/html" id="template5">
+			<table>
+				{{each data}}
+							<tr>
+								<td>${$value.title}</td>
+								<td>${$value.price}</td>
+								<td>${$value.synopsis}</td>
+							</tr>
+							{{/each}}
+						</table>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.tmpl.js"></script>
+		<script src="js/idangerous.swiper2.7.6.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/ajax/index.js"></script>
+	</body>
+</html>

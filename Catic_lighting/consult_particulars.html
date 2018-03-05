@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中航网校</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css" />
+		<link type="text/css" rel="stylesheet" href="css/animate.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper2.7.6.css" />
+	</head>
+
+	<body class="consulting consult_particulars">
+		<div class="header">
+			<div class="logo"><img src="img/tabLOGO.png"></div>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li class="seleced"><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+			</ul>
+		</div>
+		<div class="navimg">
+			<img src="img/example/commonB (2).png">
+		</div>
+		<div class="content">
+			<div class="dynamic">
+				
+			</div>
+		</div>
+	
+		<div class="footer">
+				<div class="footer-center">
+					<div class="left">
+						<div class="footerLogo"><img src="img/bottomlogo.png"></div>
+						<P>湖南中航慧谷教育科技有限公司</P>
+					</div>
+					<div class="right">
+						<ul>
+				<li><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+						</ul>
+						<div class="message">
+							<ul>
+								
+							</ul>
+							<div class="QR-code">
+								<img src="img/RXcode.png">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="records">
+					©2017中航网校有限公司丨湘公网安备 110315456151515丨湘ICP备354651561023
+				</div>
+		</div>
+		<script type="text/html" id="footer">
+			<li>邮箱：${data.gsyx}</li>
+			<li>手机：${data.gsyx}</li>
+			<li>电话：${data.dh1}</li>
+			<li>QQ：${data.gsqq}</li>
+		</script>
+		<script type="text/html" id="dynamic">
+			<div class="dynamic-center">
+					<h2><p>考试资讯<span>>${data.zxtype}</span></p></h2>
+					<div class="details">
+						<h3>${data.title}</h3>
+						<p>${data.ptime}发布</p>
+						<div class="content">
+							{{html data.content}}
+						</div>
+					</div>
+			</div>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/idangerous.swiper2.7.6.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/jquery.tmpl.js"></script>
+		<script src="js/ajax/consult_particul.js"></script>
+
+	</body>
+
+</html>

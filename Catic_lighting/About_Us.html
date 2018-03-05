@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中航网校</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css" />
+		<link type="text/css" rel="stylesheet" href="css/animate.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper2.7.6.css" />
+	</head>
+
+	<body class="about_us">
+		<div class="header">
+			<div class="logo"><img src="img/tabLOGO.png"></div>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li class="seleced"><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+			</ul>
+		</div>
+		<div class="navimg">
+			
+		</div>
+		<div class="content">
+			<div class="main1">
+				
+			</div>
+			<div class="main2">
+				
+			</div>
+			<div class="main3">
+				
+				<div class="pagination-Prev"></div>
+			<div class="pagination-Next"></div>
+			</div>
+			<div class="main4">
+				<div class="main-center">
+					<h2>公司文化与团队风采</h2>
+					<p>The company culture and team Elegant demeanour</p>
+					<div class="main4-1">
+						<ul>
+							
+						</ul>
+					</div>
+					<div class="main4-2">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+<div class="footer">
+				<div class="footer-center">
+					<div class="left">
+						<div class="footerLogo"><img src="img/bottomlogo.png"></div>
+						<P>湖南中航慧谷教育科技有限公司</P>
+					</div>
+					<div class="right">
+						<ul>
+				<li><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+						</ul>
+						<div class="message">
+							<ul>
+								
+							</ul>
+							<div class="QR-code">
+								<img src="img/RXcode.png">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="records">
+					©2017中航网校有限公司丨湘公网安备 110315456151515丨湘ICP备354651561023
+				</div>
+		</div>
+		<script type="text/html" id="footer">
+			<li>邮箱：${data.gsyx}</li>
+			<li>手机：${data.gsyx}</li>
+			<li>电话：${data.dh1}</li>
+			<li>QQ：${data.gsqq}</li>
+		</script>
+		<script type="text/html" id="navimg">
+			<img src="${data[0].imgurl}">
+		</script>
+		<script type="text/html" id="template1">
+			<div class="main-center">
+					<h2>公司概况</h2>
+					<p>Company profile</p>
+					{{each data}}
+					<div class="main1-${$index+1}">
+						<div class="main1-img">
+							<img src="${$value.imgurl}">
+						</div>
+						<p>${$value.content}
+						</p>
+					</div>
+					{{/each}}
+				</div>
+		</script>
+		<script type="text/html" id="main2">
+			<div class="main-center">
+					<h2>发展历程</h2>
+					<p>development history</p>
+					<div class="section">
+					<div class="main2-1">
+						<div class="left">
+							<h2>development</h2>
+							<h3>HISTory</h3>
+							<p>${data.QH[0].title}</p>
+							<span></span>
+							<p>${data.QH[1].title}</p>
+						</div>
+						<div class="right">
+							<h2>起航Beginning</h2>
+							<p>${data.QH[0].content}</p>
+							<p>${data.QH[1].content}</p>
+						</div>
+					</div>
+					<div class="main2-1">
+						<div class="left">
+							<h2>development</h2>
+							<h3>HISTory</h3>
+							<p>${data.WL[0].title}</p>
+							<span></span>
+							<p>${data.WL[1].title}</p>
+						</div>
+						<div class="right">
+							<h2>加速发展Beginning</h2>
+							<p>${data.WL[0].content}</p>
+							<p>${data.WL[1].content}</p>
+						</div>
+					</div>
+					<div class="main2-3">
+						<div class="left">
+							<h2>development</h2>
+							<h3>HISTory</h3>
+							<p>${data.JSFZ[0].title}</p>
+							<span></span>
+							<p>${data.JSFZ[1].title}</p>
+							<p>${data.JSFZ[0].content}</p>
+						</div>
+						<div class="right">
+							<h2>稳重求进Calm and steady</h2>
+							<div class="Rimg"><img src="img/example/wzqjt.png"></div>
+						</div>
+					</div>
+					<div class="main2-4">
+						<div class="left">
+							<h2>development</h2>
+							<h3>HISTory</h3>
+							<p>${data.WZQJ[0].title}</p>
+							<span></span>
+							<p>${data.WZQJ[1].title}</p>
+						</div>
+						<div class="right">
+							<h2>未来 In the future</h2>
+							<p>${data.WZQJ[0].content}</p>
+						</div>
+						<div class="bottom">
+							<img src="img/example/wlt.png">
+						</div>
+					</div>
+					</div>
+				</div>
+		</script>
+		<script type="text/html" id="template3">
+			<div class="main-center">
+					<h2>荣誉资质</h2>
+					<p>Honor and Qualifications</p>
+					<div class="swiper-container1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<ul>
+									{{each data}}
+									{{if $index<=5}}
+									<li>
+										<div class="top">
+											<img src="${$value.imgurl}">
+										</div>
+										<h3>${$value.title}</h3>
+										<p>${$value.synopsis}</p>
+									</li>
+									{{/if}}
+									{{/each}}
+								</ul>
+							</div>
+							<div class="swiper-slide">
+								<ul>
+									{{each data}}
+									{{if $index>5}}
+									<li>
+										<div class="top">
+											<img src="${$value.imgurl}">
+										</div>
+										<h3>${$value.title}</h3>
+										<p>${$value.synopsis}</p>
+									</li>	
+									{{/if}}
+									{{/each}}
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+		</script>
+		<script type="text/html" id="template4-1">
+			<ul>
+				{{each data}}
+							<li>
+								<div class="top-img">
+									<img src="${$value.imgurl}">
+								</div>
+								<h3>${$value.title}</h3>
+								<p>${$value.synopsis}</p>
+							</li>
+							{{/each}}
+						</ul>
+		</script>
+		<script type="text/html" id="template4-2">
+			          <div class="left">
+							<video controls="controls" width="100%" height="100%" src=""></video>
+							<div class="play"><img src="img/pause.png"></div>
+						</div>
+						<div class="right">
+							<h2>${data[0].title}</h2>
+							<span></span>
+							<p>${data[0].content}</p>
+						</div>
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/idangerous.swiper2.7.6.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/common.js"></script>
+        <script src="js/jquery.tmpl.js"></script>
+        <script src="js/ajax/about_us.js"></script>
+	</body>
+
+</html>

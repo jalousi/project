@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中航网校</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css" />
+		<link type="text/css" rel="stylesheet" href="css/animate.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/idangerous.swiper2.7.6.css" />
+	</head>
+
+	<body class="home consulting">
+		<div class="header">
+			<div class="logo"><img src="img/tabLOGO.png"></div>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li class="seleced"><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+			</ul>
+		</div>
+		<div class="navimg">
+			
+		</div>
+		<div class="content">
+			<div class="main3">
+				<div class="main3-center">
+					<!--<h2>最新文件</h2>
+					<p>每天都有最新的文件、公告、政策等咨询更新，请多多关注</p>-->
+					<div class="main3-content">
+						<div class="main3-1">
+							
+						</div>
+						<div class="main3-2">
+							
+						</div>
+						<div class="main3-3">
+							
+						</div>
+						<div class="main3-4">
+							
+						</div>
+						<div class="main3-5">
+							<a><button>加入我们开始拿证之旅</button></a>
+						</div>
+						<div class="main3-6">
+							
+						</div>
+						</div>
+					</div>
+			</div>
+		    <div class="dynamic">
+		    	
+		    </div>
+		    <div id="jqpaginator">
+				<ul></ul>
+			</div>
+		</div>
+				<div class="payment-mask mask2">
+			<div class="subscribe">
+				<div class="closeImg">
+					<img src="img/close.png">
+				</div>
+				<h2>在线预约</h2>
+				<div class="message">
+					<label class="name"><span>姓名</span><input type="text" name="name"></label>
+					<label class="phone"><span>电话</span><input type="text" name="phone"></label>
+					<label class="subject"><span>预约科目</span><input type="text" name="subject"></label>
+					<label class="email"><span>电子邮箱</span><input type="text" name="email"></label>
+				</div>
+				<div class="submit"><button>提交预约信息</button></div>
+			</div>
+		</div>
+<div class="footer">
+				<div class="footer-center">
+					<div class="left">
+						<div class="footerLogo"><img src="img/bottomlogo.png"></div>
+						<P>湖南中航慧谷教育科技有限公司</P>
+					</div>
+					<div class="right">
+						<ul>
+				<li><a href="index.html">首页</a></li>	
+				<li><a href="About_Us.html">公司介绍</a></li>
+				<li><a href="subjectSet.html">科目设置</a></li>
+				<li><a href="Test_Consulting.html">考试资讯</a></li>
+				<li><a href="data_download.html">资料下载</a></li>
+				<li><a href="score_inquiry.html">成绩查询</a></li>
+				<li><a href="contact_us.html">联系我们</a></li>
+						</ul>
+						<div class="message">
+							<ul>
+								
+							</ul>
+							<div class="QR-code">
+								<img src="img/RXcode.png">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="records">
+					©2017中航网校有限公司丨湘公网安备 110315456151515丨湘ICP备354651561023
+				</div>
+		</div>
+		<script type="text/html" id="footer">
+			<li>邮箱：${data.gsyx}</li>
+			<li>手机：${data.gsyx}</li>
+			<li>电话：${data.dh1}</li>
+			<li>QQ：${data.gsqq}</li>
+		</script>
+		<script type="text/html" id="navimg">
+			<img src="${data[0].imgurl}">
+		</script>
+		
+		<script type="text/html" id="template3-1">
+			<h3><p>行业动态</p><a href="Advisory_details.html?type=mhydt">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template3-2">
+			<h3><p>最新公告</p><a href="Advisory_details.html?type=mzxgg">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template3-3">
+			<h3><p>最新政策</p><a href="Advisory_details.html?type=mzxzc">更多</a></h3>
+							<div class="count">
+								<div class="count_down">
+									<img src="img/example/main5-1.png">
+								</div>
+								<ul>
+									{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+								</ul>
+							</div>
+		</script>
+		<script type="text/html" id="template3-4">
+			<h3><p>文案文案</p><a href="Advisory_details.html?type=mwawa">更多</a></h3>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="template3-6">
+			<h3><p>考试提醒</p><a href="Advisory_details.html?type=mkszx">更多</a></h3>
+							<div class="count_down">
+								<span>倒数日期：</span>
+								<ul>
+									
+								</ul>
+							</div>
+							<ul>
+								{{each data}}
+								<li>
+									<a href="consult_particulars.html?id=${$value.id}"><p>${$value.title}</p><span>${$value.ptime}</span></a>
+								</li>
+									{{/each}}
+							</ul>
+		</script>
+		<script type="text/html" id="dynamic">
+			<div class="dynamic-center">
+		    	<h2><p>行业动态</p></h2>
+		       <div class="details">
+		       	{{each data}}
+		       	<div class="section">
+		       		<a href="consult_particulars.html?id=${$value.id}">
+		       		<div class="left">
+		       			<h1>${dateTime($value.ptime)[1]}</h1>
+		       			<p>${dateTime($value.ptime)[0]}</p>
+		       		</div>
+		       		<div class="right">
+		       			<h2>${$value.title}</h2>
+		       			<p>${$value.synopsis}</p>
+		       		</div>
+		       		</a>
+		       	</div>
+		       	{{/each}}
+		       </div>
+		       </div>
+		       
+		</script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.tmpl.js"></script>
+		<script src="js/idangerous.swiper2.7.6.js"></script>
+		<script src="js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/common.js"></script>
+        <script src="js/jqPaginator.js"></script>
+        <script src="js/ajax/consulting.js"></script>
+	</body>
+
+</html>
