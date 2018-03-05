@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="MynameEdit">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>修改昵称</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter page-slideright">
+			<div class="editname">
+				<section>
+					<input maxlength="10" class="editnameval" type="text" placeholder="请重新输入昵称" />
+				</section>
+				<a class="savename">保存</a>
+			</div>
+		</div>
+		<!--主体 end-->
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script type="text/javascript">
+		document.querySelector('.savename').addEventListener('tap', function() {
+			var realname = $(".editnameval").val();
+			localStorage.setItem('name', realname);
+			var wvs = plus.webview.getWebviewById('MyInfoEdit.html');
+			//修改昵称后仅刷新个人信息页的昵称
+			mui.fire(wvs, 'refueshMyInfo-nickname');
+			mui.back();
+		});
+	</script>
+
+</html>

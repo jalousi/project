@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<!--		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />-->
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="VipList VipListPrev">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>我的会员</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background: white;">
+			<div class="Conter page-slideright" style="padding-bottom: 0.5rem;">
+				<!--<section>
+				<a href="VipListNext.html">
+					<div class="left">
+						<img src="images/idx-foodlist.jpg">
+						<span class="name">李彦宏</span>
+					</div>
+					<div class="right">
+						<p>推广金额：3689</p>
+					</div>
+				</a>
+			</section>-->
+			</div>
+		</div>
+		<!--主体 end-->
+
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script type="text/javascript">
+		var index = 1;
+		VipListPrewAjax(index, 15);
+
+		function VipListPrewAjax(index) {
+			var length = 0,
+				wxid = localStorage.getItem("m_openid");
+			mui.ajax(commonUrl + 'apigd/membershopfxteam', {
+				data: {
+					m_openid: wxid,
+					level: 1,
+					page: index,
+					pagesize: 1000
+				},
+				dataType: 'json',
+				type: 'get',
+				timeout: 6000,
+				success: function(data) {
+					if(data.code == 1) {
+						var Data = data.data.childs,
+							html = "";
+						if(Data.length > 0) {
+							for(var i = 0; i < Data.length; i++) {
+								if(Data[i].mdata_json) {
+									var pic = Data[i].mdata_json.pic;
+								} else {
+									var pic = "images/backgroundimg500.500.jpg";
+								}
+								html += '<section><a href="VipListNext.html?openid=' + Data[i].m_openid + '"><div class="left">' +
+									'<img src="' + pic + '"><span class="name">' + Data[i].m_nickname + '</span>' +
+									'</div><div class="right"><p>推广人数：' + Data[i].tm3 + '</p></div></a></section>'
+							};
+							$("div.Conter").append(html);
+							length = Data.length;
+						} else {
+							mui.toast('没有下级会员')
+						}
+					} else {
+						mui.toast("网络错误");
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+			return length;
+		}
+
+		function is_null(data, index) {
+			if(data == 'undefined' || data == undefined || data == "" || data == 0 || data == "0" || data == 'null' || data == null || data == 'false' || data == false) {
+				return index;
+			} else {
+				return data;
+			}
+		}
+	</script>
+
+</html>

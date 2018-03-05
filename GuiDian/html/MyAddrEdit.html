@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="MyAddrs">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>编辑地址</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter">
+			<div class="wraper">
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">收货人</label>
+						<div class="w-bar-control"><input id="Name" pro="input" type="text" placeholder="请填写真实姓名"></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">联系方式</label>
+						<div class="w-bar-control"><input id="Phone" pro="input" type="number" maxlength="11" placeholder="联系方式必须填"></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar">
+						<label class="w-bar-label">所在城市</label>
+						<div class="w-bar-control">
+							<a href="javascript:void(0);" class="selectaddr" id="sel_city"><span>请选择您所在的城市</span><img class="selectaddr" src="images/selectaddr.png"></a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-inputBar-textarea w-bar">
+						<label class="w-bar-label">街道</label>
+						<div class="w-bar-control"><textarea id="Address" pro="input" placeholder="请填写详细地址，不少于5个字"></textarea></div>
+					</div>
+				</section>
+				<section>
+					<div class="w-inputBar w-bar w-setmoren">
+						<label class="w-bar-label">设为默认</label>
+						<div class="w-bar-control">
+							<div class="setmoren"><label><input class="mui-switch mui-switch-animbg mui-switch-anim" id="setMorenBtn" type="checkbox"></label></div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 --> 
+		<div class="footer">
+			<button class="save">保存</button>
+		</div>
+	</body>
+	<script src="js/assets/picker.min.js"></script>
+	<script src="js/assets/datas.js"></script>
+	<script src="js/assets/citychoser.js"></script>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/MyAddrEdit.js"></script>
+</html>

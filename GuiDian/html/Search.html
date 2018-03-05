@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css">
+		<link type="text/css" rel="stylesheet" href="css/search.css">
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<div class="serchbox">
+				<input type="text" name="seachvalue">
+			</div>
+			<a href="SearchList.html">
+				<p>搜索</p>
+			</a>
+		</header>
+		<section class="page-slideright">
+			<h1>热门搜索</h1>
+			<div class="rmss">
+				<ul class="clearfix">
+					<a href="SearchList.html">
+						<li>芒果</li>
+					</a>
+					<a href="SearchList.html">
+						<li>有机黄妃番茄</li>
+					</a>
+					<a href="SearchList.html">
+						<li>猕猴桃</li>
+					</a>
+					<a href="SearchList.html">
+						<li>有机芒果</li>
+					</a>
+					<a href="SearchList.html">
+						<li>有机黄妃番茄</li>
+					</a>
+					<a href="SearchList.html">
+						<li>猕猴桃</li>
+					</a>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script type="text/javascript">
+		window.onload = function searchSS() {
+			FastClick.attach(document.body); //ios点击优化
+
+			var liList = document.querySelectorAll(".rmss ul li");
+			var sousuo = document.querySelector("header p");
+			var inputV = document.querySelector("header input");
+			for(let i = 0; i < liList.length; i++) {
+				let Vue = liList[i].innerHTML;
+				liList[i].onclick = function() {
+					localStorage.setItem("html", Vue);
+				}
+			}
+			//点击搜索事件
+			sousuo.onclick = function() {
+				var local = inputV.value;
+				localStorage.setItem("html", local);
+			}
+		}
+		//热门搜索词存入localStorage
+		function remenss(num) {
+			localStorage.setItem("html", num);
+		}
+	</script>
+
+</html>

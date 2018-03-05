@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>裁剪头像</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="mui/mui.min.css" rel="stylesheet" />
+		<link href="css/cropper.css" rel="stylesheet" />
+		<style type="text/css">
+			body {
+				background-color: #000000;
+			}
+			
+			#cropper-example-1 {
+				background-color: #000000;
+				height: 88%;
+				width: 100%;
+				position: absolute;
+			}
+			
+			.bottom {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 15%;
+				background: black;
+			}
+			
+			.bottom button {
+				background: #222222;
+				height: 2.2rem;
+				width: 9rem;
+				border: 1px solid #666666;
+				color: white;
+				line-height: 1.6rem;
+				padding: 0;
+			}
+			
+			.bottom .cancal {
+				border-radius: 1.5rem 0 0 1.5rem;
+			}
+			
+			.bottom .confirm {
+				border-radius: 0 1.5rem 1.5rem 0;
+				border-left: none;
+			}
+			
+			img#im {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="cropper-example-1" class="mui-hidden">
+			<img id="im" alt="Picture" />
+		</div>
+
+		<div class="bottom">
+			<button class="cancal" id="cancal">取消</button>
+			<button class="confirm" id="confirm">确定</button>
+		</div>
+		<img src="" alt="" class="mui-hidden" id="im_exif" />
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="js/cropper.min.js"></script>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/exif.js"></script>
+		<script src="js/app.js"></script>
+		<script>
+			(function(c) {
+				var Cro = function() {}
+				c.extend(Cro.prototype, {
+					orientation: null,
+					urldata: null,
+					view: null,
+					num: 0,
+					sbx: null,
+					sby: null,
+					n: 0,
+					onReady: function() {
+						var that = this;
+						mui.init();
+						that.bindEvent();
+						that.view = plus.webview.currentWebview();
+
+						var img = document.getElementById("im_exif");
+						img.src = that.view.path;
+						img.addEventListener("load", function() {
+							//exif调整图片的横竖
+							EXIF.getData(this, function() {
+								var orientation = EXIF.getAllTags(this).Orientation;
+								$("#im").attr("src", that.view.path);
+								document.getElementById("cropper-example-1").classList.remove("mui-hidden"); //显示裁剪区域
+								that.cropperImg();
+							});
+						})
+					},
+					cropperImg: function() {
+						var that = this;
+						$('#cropper-example-1 > img').cropper({
+							aspectRatio: 1 / 1,
+							autoCropArea: 1,
+							strict: true,
+							background: false,
+							guides: false,
+							highlight: false,
+							dragCrop: false,
+							movable: true,
+							resizable: false,
+							crop: function(data) {
+								that.urldata = that.base64(data);
+							}
+						});
+					},
+					loadcopyImg: function(img, opt) {
+						var that = this;
+						var canvas = document.createElement("canvas");
+						var square = 500;
+						var imageWidth, imageHeight;
+						if(img.width > img.height) {
+							imageHeight = square;
+							imageWidth = Math.round(square * img.width / img.height);
+						} else {
+							imageHeight = square; //this.width;
+							imageWidth = Math.round(square * img.width / img.height);
+						}
+						canvas.height = imageHeight;
+						canvas.width = imageWidth;
+						if(opt == 6) {
+							that.num = 90;
+						} else if(opt == 3) {
+							that.num = 180;
+						} else if(opt == 8) {
+							that.num = 270;
+						}
+						if(that.num == 360) {
+							that.num = 0;
+						}
+
+						var ctx = canvas.getContext("2d");
+						ctx.translate(imageWidth / 2, imageHeight / 2);
+						ctx.rotate(that.num * Math.PI / 180);
+						ctx.translate(-imageWidth / 2, -imageHeight / 2);
+						ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+						var dataURL = canvas.toDataURL("image/png", 1);
+						return dataURL;
+					},
+					bindEvent: function() {
+						var that = this;
+						document.getElementById("cancal").addEventListener("tap", function() {
+							mui.back(); //取消就直接返回
+						});
+						document.getElementById("confirm").addEventListener("tap", function() {
+							//触发上一个页面刷新图片事件
+							var preView = plus.webview.getWebviewById('MyInfoEdit.html');
+							mui.fire(preView, 'updateHeadImg', {
+								'img': that.urldata
+							}); //不能保存图片，需要判断上传性，所以选择传值的方式，传递图片,格式为json
+							function create() {
+								var w = plus.webview.create('MyInfoEdit.html');
+								w.show(); // 显示窗口
+							}
+
+							mui.back();
+						});
+					},
+					base64: function(data) {
+						var that = this;
+						var img = document.getElementById("im");
+						var canvas = document.createElement("canvas");
+						//像素
+						canvas.height = 200;
+						canvas.width = 200;
+						var bx = data.x;
+						var by = data.y;
+						var ctx = canvas.getContext("2d");
+						//						console.log(bx+"/"+by+"/"+data.width+"/"+data.height)
+						ctx.drawImage(img, bx, by, data.width, data.height, 0, 0, 200, 200);
+						//          var dataURL = $image.cropper("getCroppedCanvas");
+						var dataURL = canvas.toDataURL("image/jpeg", 0.5); //第二个参数是质量
+						return dataURL;
+
+					}
+				});
+
+				var cro = new Cro();
+
+				c.plusReady(function() {
+					cro.onReady();
+				})
+			})(mui)
+		</script>
+	</body>
+
+</html>

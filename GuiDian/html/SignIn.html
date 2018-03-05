@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/login.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js"></script>
+		<style>
+			from input {
+				display: block !important;
+				width: 100% !important;
+				height: 1.8rem !important;
+				border: none !important;
+				margin-bottom: 0.08rem !important;
+				text-indent: 0.5rem !important;
+				font-size: 0.6rem !important;
+				background-color: #fff;
+				padding: 0 !important;
+			}
+			
+			from button {
+				display: block;
+				margin: 1rem auto 0.2rem auto;
+			}
+		</style>
+	</head>
+
+	<body class="Login">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>注册</p>
+		</header>
+		<article class="page-slideright">
+			<from>
+				<input type="tel" maxlength="15" id="Phone" placeholder="请输入手机号">
+				<input type="number" id="imgnumber" placeholder="图片验证码">
+				<div class="imgcaptcha" onclick="imgCaptcha()"><img src="images/backgroundimg500.256.jpg" alt="图片验证码"></div>
+				<input type="number" id="auth_code" placeholder="短信验证码">
+				<div class="captcha">获取验证码</div>
+				<input id="password" type="password" maxlength="20" placeholder="请输入6-15位密码">
+				<input id="topassword" type="password" maxlength="20" placeholder="请重复密码">
+				<input id="Invitation_code" type="text" maxlength="10" placeholder="输入邀请码赠送优惠券">
+				<button id="register">注册</button>
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label style="padding-left:1.2rem;"><p>注册即默认同意《 <a href="Sponsor.html" style="display: inline;color: #e02e24;">贵点APP商城用户协议</a>》</p></label>
+					<input name="checkbox1" value="Item 3" type="checkbox" id="checkbox">
+				</div>
+			</from>
+		</article>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script type="text/javascript">
+		$('#register').attr('disabled', 'disabled');
+		$('#register').css('background', '#999999');
+		$('#checkbox').click(function() {
+			if($('#checkbox').is(':checked')) {
+				$('#register').attr('disabled', false);
+				$('#register').css('background', '#E02E24');
+			} else {
+				$('#register').attr('disabled', 'disabled');
+				$('#register').css('background', '#666666');
+			}
+		})
+	var jschars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+		var code = "",res="",phone = "";
+		var captcha=document.querySelector(".captcha");
+		      imgCaptcha();
+		document.querySelector(".captcha").addEventListener('tap', function() {
+			var clock = '';
+			var nums = 30;
+			var btn;
+			phone = $("#Phone").val();
+			if(checkPhone(phone)) {
+				if(imgnumber($('#imgnumber').val())){
+					authCode(phone);
+				}
+			};
+			function sendCode(thisBtn) {
+				btn = thisBtn;
+				btn.disabled = true; //将按钮置为不可点击
+				btn.innerHTML = "重新发送(" + nums + ")";
+				document.querySelector(".captcha").style.background = "#999999";
+				clock = setInterval(doLoop, 1000); //一秒执行一次
+			}
+
+			function doLoop() {
+				nums--;
+				if(nums > 0) {
+					btn.innerHTML = "重新发送(" + nums + ")";
+				} else {
+					clearInterval(clock); //清除js定时器
+					btn.disabled = false;
+					btn.innerHTML = '重新发送';
+					nums = 30; //重置时间
+					document.querySelector(".captcha").style.background = "#fc5046";
+				}
+			}
+	
+		//发送验证码
+		function authCode(phone) {
+			mui.ajax(commonUrl + 'apigd/sendsms_lzbxxl', {
+				data: {
+					phone: phone,
+					type: 'regcode',
+					imgcodeflag:res,
+					imgcode:$('#imgnumber').val()
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				timeout: 6000, //超时时间设置为6秒；
+				success: function(data) {
+					if(data.code == 1) {
+						mui.toast("成功发送短信")
+						code = data.data.code;
+						sendCode(captcha);
+					} else if(data.code == -1) {
+						mui.toast(data.msg);
+						//mui.toast("验证码发送失败")
+					} else if(data.code == -2) {
+						mui.toast(data.msg);
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+		}
+		});
+		$("#Phone").blur(function() {
+			checkPhone($("#Phone").val());
+		});
+		$("#password").blur(function() {
+			isPasswd($("#password").val());
+		})
+		$("#topassword").blur(function() {
+			toispasswd($("#topassword").val(), $("#password").val());
+		})
+		//点击注册事件
+		document.querySelector('#register').addEventListener('tap', sigonTap);
+
+		function sigonTap() {
+			var flag = 0;
+			if(flag == 0) {
+				flag = 1;
+				if($("#Phone").val() == phone) {
+					if(verifyCode()) {
+						if(isPasswd($("#password").val())) {
+							if(toispasswd($("#topassword").val(), $("#password").val())) {
+								if($('#Invitation_code').val() != "") {
+									//        加入Ajax
+									signinAjax($("#Phone").val(), $("#password").val(), $("#Invitation_code").val());
+								} else {
+									mui.toast('邀请码不能为空');
+								}
+							}
+						}
+					}
+				} else {
+					mui.toast('该手机号未发送验证码');
+				}
+				setTimeout(function() {
+					flag = 0;
+				}, 3000);
+			};
+		}
+		//注册Ajax
+		function signinAjax(phone, passwd, code) {
+			mui.ajax(commonUrl + 'apigd/memberareg ', {
+				data: {
+					account: phone,
+					password: passwd,
+					tgid: code
+				},
+				dataType: 'json',
+				type: 'post', 
+				timeout: 6000,
+				success: function(data) {
+					if(data.code == 1) {
+						mui.toast("注册成功")
+						mui.openWindow({
+							url: 'Login.html',
+							id: 'Login'
+						});
+					} else {
+						if(data.code == '-2') {
+							mui.toast(data.msg);
+						} else {
+							mui.toast("注册失败")
+						}
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+		}
+		//验证验证码
+		function verifyCode() {
+			if($("#auth_code").val().length == 6 && code.length == 6) {
+				if($("#auth_code").val() == code) {
+					return true;
+				} else {
+					mui.toast('验证码错误');
+					return false;
+				}
+			} else {
+				mui.toast('验证码错误');
+				return false;
+			}
+		}
+//		验证图片验证格式
+		function imgnumber(val){
+			if(val != 0 && val.length==4){
+				return true;
+			}else{
+				mui.toast('图片验证码错误');
+				return false;
+			}
+		}
+		//图片验证码
+		function imgCaptcha(){
+			res=generateMixed(20);
+			$('.imgcaptcha img').attr('src',commonUrl+'apigd/imgcode?width=50&height=20&flag='+res);
+		}
+//		随机数
+function generateMixed(n) {
+    var res = "";
+    for(var i = 0; i < n ; i ++) {
+        var id = Math.ceil(Math.random()*35);
+        res += jschars[id];
+    }
+    return res;
+}
+	</script>
+
+</html>

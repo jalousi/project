@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/login.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<style>
+		.captcha{
+			top:2.2rem !important;
+		}
+	</style>
+
+	<body class="Login">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>重置支付密码</p>
+		</header>
+		<article>
+			<from>
+				<input id="Phone" type="tel" maxlength="15" placeholder="请输入手机号">
+				<input type="number" id="auth_code" placeholder="验证码">
+				<div class="captcha">获取验证码</div>
+				<input id="password" type="password" maxlength="20" placeholder="请输入新支付密码">
+				<input id="topassword" type="password" maxlength="20" placeholder="请重复支付密码">
+				<button id="submit">提交</button>
+			</from>
+		</article>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/FindPaypwd.js"></script>
+</html>

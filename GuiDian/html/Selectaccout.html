@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>贵点</title>
+	<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet" type="text/css">
+	<link href="css/login.css" rel="stylesheet" type="text/css">
+	<script src="js/fastclick.js"></script>
+	<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>选择账户</p>
+			<div class="page-slideright">
+				<a class="ATD" href="Withdrawdeposit.html">确定</a>
+			</div>
+		</header>
+		<div class="Conter page-slideright">
+			<!--<div class="payway">
+					<label class="checkgroup">
+							<div class="payway-l"><p class="Unionpay">银联账户****&nbsp;****&nbsp;****&nbsp;2345</p></div>
+							<div class="payway-r"><input type="checkbox" class="paycheck" id="unionpay" name="AliPay" checked="checked"/></div>
+					</label>
+			</div>
+				<div class="payway">
+					<label class="checkgroup">
+							<div class="payway-l"><p class="Alipay">支付宝账户（135****3547）</p></div>
+							<div class="payway-r"><input type="checkbox" class="paycheck" id="AliPay"/></div>
+					</label>
+			</div>-->
+		</div>
+		<div class="cardisempty">
+			<p>您还未绑定提现账户，无法提现...</p>
+			<a href="Addaccout.html" class="gosee">去绑卡</a>
+		</div>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/mui.slideright.js"></script>
+		<script src="js/ajax/commonfuc.js"></script>
+		<script>
+			$(document).ready(function() {
+				FastClick.attach(document.body); //ios点击优化
+			});
+			var num = 0;
+
+			function Selectaccout(data) {
+				$('.checkgroup').click(function() {
+					num = $(this).parent().index();
+					var $this = $(this);
+					$this.closest('.payway').siblings().find('input[type=checkbox]').prop("checked", false);
+					$this.find('.paycheck').prop('checked', true);
+					localStoragset(num, Data);
+				})
+			};
+		</script>
+		<script type="text/javascript">
+			var Data = "",
+				wxid = localStorage.getItem("m_openid");
+			mui.ajax(commonUrl + 'apigd/membercardlist', {
+				data: {
+					m_openid: wxid
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				timeout: 6000, //超时时间设置为6秒；
+				success: function(data) {
+					if(data.code == 1) {
+						Data = data.data.listdata,
+							html = "";
+						if(Data.length > 0) {
+							for(var i = 0; i < Data.length; i++) {
+								if(Data[i].type == 0) {
+									var code = Data[i].code.split(" ");
+									code = code[code.length - 1];
+									html += '<div class="payway"><label class="checkgroup"><div class="payway-l"><p class="Unionpay">银联账户****&nbsp;****&nbsp;****&nbsp;' + code + '</p></div>' +
+										'<div class="payway-r"><input type="checkbox" class="paycheck" id="unionpay" name="AliPay" /></div></label></div>'
+								} else {
+									html += '<div class="payway"><label class="checkgroup"><div class="payway-l"><p class="Alipay">支付宝账户（' + Data[i].code.substr(0, 3) + '****' + Data[i].code.substr(7, 4) + '）</p></div>' +
+										'<div class="payway-r"><input type="checkbox" class="paycheck" id="AliPay"/></div></label></div>'
+								}
+							}
+							$(".Conter").html(html);
+							$(".Conter .payway").eq(0).find('input').prop('checked', true);
+							localStoragset(num, Data);
+							Selectaccout(Data);
+						} else {
+							$('.cardisempty').css('display', "flex");
+							$('.ATD').remove();
+						}
+					} else {
+						mui.toast("网络错误");
+					};
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+
+			function localStoragset(num, data) {
+				localStorage.setItem('num', data[num].id);
+				localStorage.setItem('type', data[num].type);
+				localStorage.setItem('code', data[num].code);
+			}
+		</script>
+	</body>
+
+</html>

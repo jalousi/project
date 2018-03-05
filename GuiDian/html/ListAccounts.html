@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>贵点</title>
+	<link href="mui/mui.min.css" type="text/css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet" type="text/css">
+	<link href="css/login.css" rel="stylesheet" type="text/css">
+	<script src="js/fastclick.js"></script>
+	<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="Accounts">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>账户列表</p>
+			<div class="page-slideright">
+			</div>
+		</header>
+		<div class="Conter page-slideright">
+			<!--<div class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<button class="mui-btn mui-btn-red">删除</button>
+				</div>
+				<div class="mui-slider-handle payway">
+					<label class="checkgroup">
+							<div class="payway-l"><p class="Unionpay"><sapn>银联账户</sapn><span>****&nbsp;****&nbsp;****&nbsp;2345</span></p></div>
+						</label>
+				</div>
+			</div>-->
+		</div>
+		<a class="addAccounts" href="Addaccout.html">
+			添加账户
+		</a>
+		<script src="mui/mui.min.js"></script>
+		<script src="js/mui.slideright.js"></script>
+		<script src="js/ajax/commonfuc.js"></script>
+		<script src="js/ajax/ListAccounts.js"></script>
+		<script>
+			$(document).ready(function() {
+				FastClick.attach(document.body); //ios点击优化
+			});
+		</script>
+	</body>
+
+</html>

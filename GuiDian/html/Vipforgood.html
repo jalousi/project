@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body class="Vipforgood">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>会员福利</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter">
+			<div class="banner"><img src="images/idx-vipforgood.jpg"><!--<img src="images/idx-vip-arrow.png">--></div>
+			<div class="info">
+				<h3>新会员须知：</h3>
+				<p>一、 新会员优先权利仅为本平台前期推广奖励活动；</p>
+				<p>二、 所有的推广活动要在合理合法的情况下进行，一旦发生违法行为与公司无关；</p>
+				<p>三、 会员需维护公司形象，一旦出现损坏公司形象的行为，公司有权终止会员资格。 本活动最终解释权归贵点公司所有。
+				</p>
+				<h3>新会员优先权利：</h3>
+				<p>一、	入会即可享受本商城提供的健康安全有机产品；</p>
+				<p>二、	入会即可得到400元现金抵扣券，消费可抵扣20%；</p>
+				<p>三、	入会即赠送豪华礼盒（树脂PP材质家庭多功能保健药箱，内含：高档负离子女性卫生巾及洗护用品）</p>
+				<p>四、	入会每月仅支付包装物流费用（现价19.9元），即可免费十年使用高档负离子卫生巾；</p>
+				<p>五、	入会即可享受推广新会员奖励，推广越多，奖励越多。</p>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<div class="Joinus">
+			<a href="javascript:void(0);">立即加入</a>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script>
+		mui('.Joinus').on('tap', 'a', function() {
+			var _id = 1,
+				_numb = 1,
+				_attrs = '',
+				_cart_type = 'buy',
+				_goodstype = 'fx',
+				_tabIndex = 2;
+			joinTrollry(_id, _numb, _attrs, _cart_type, _goodstype, _tabIndex);
+		});
+	</script>
+
+</html>

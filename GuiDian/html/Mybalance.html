@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css">
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/login.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="Login">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>我的余额</p>
+			<div class="page-slideright">
+				<a href="ListAccounts.html" class="wallet">
+					<img src="images/wallet.png">
+				</a>
+			</div>
+		</header>
+
+		<article class="coonet page-slideright">
+			<div class="mybalance">
+				<h2>0.00<span>元</span></h2>
+				<div class="detail">
+					<a href="Detile.html">查看明细</a>
+				</div>
+			</div>
+			<div class="earnings">
+				<div class="earning_w">
+					<h2>未结算金额</h2>
+					<p>0.00</p>
+				</div>
+				<div class="earning-L">
+					<h2>累计收益</h2>
+					<p>0.00</p>
+				</div>
+			</div>
+			<div class="rule">
+				<p>推广奖励规则：邀请用户注册APP并确认支付成为VIP会员后，即可获得推广奖励；奖励金额提现申请提交成功后，七个工作日内到账。</br>点击查看《
+					<a href="WithdrawalRules.html" style="display: inline; color: #E02E24;">提现规则</a>》 </p>
+			</div>
+			<div class="semit">
+				<a type="buttom" href="javascript:void(0);">我要提现</a>
+			</div>
+		</article>
+		<div class="MessageGroup">
+			<div class="tankuangleirong">
+				<div class="tishiyu">
+					<p class="hint">提现须知</p>
+					<p class="tishiyu_bottom">平台将代扣<span></span>%的个人所得税</p>
+				</div>
+				<div class="goumai">确定</div>
+			</div>
+			<div class="tankuangyinying"></div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/Mybalance.js"></script>
+</html>

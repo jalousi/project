@@ -1,0 +1,701 @@
+{
+  "Index-nav.html": {
+    "resources": [
+      "mui/mui.min.css",
+      "images/foot_4-1.png",
+      "images/foot_2-1.png",
+      "css/footnav.css",
+      "fonts/mui.ttf",
+      "images/foot_3-1.png",
+      "mui/mui.min.js",
+      "Index.html",
+      "images/foot_1-2.png",
+      "images/foot_1-1.png",
+      "images/foot_4-2.png",
+      "images/foot_3-2.png",
+      "images/foot_2-2.png"
+    ],
+    "refer": [
+      "Index.html",
+      "MyInfo.html",
+      "Trolley.html",
+      "GoodsClassfy.html",
+      "Unloaded.html",
+      "Login.html"
+    ]
+  },
+  "Index.html": {
+    "resources": [
+      "css/MyIndex.css",
+      "images/idx-vip.jpg",
+      "images/backgroundimg500.256.jpg",
+      "js/md5.min.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "swiper/swiper.min.css",
+      "images/backgroundimg500.500.jpg",
+      "js/ajax/Index.js",
+      "js/mui.slideright.js",
+      "swiper/swiper.min.js",
+      "mui/mui.min.css",
+      "mui/mui.min.js"
+    ],
+    "refer": [
+      "GoodsIntr.html"
+    ]
+  },
+  "MyInfo.html": {
+    "resources": [
+      "images/myinfo-icon2.png",
+      "js/ajax/InfoAjax.js",
+      "js/fastclick.js",
+      "mui/mui.min.css",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "images/myinfo-icon3.png",
+      "images/selectaddr.png",
+      "images/myinfo-icon1.png",
+      "images/myinfo-icon4.png",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "images/backgroundimg500.500.jpg"
+    ],
+    "refer": [
+      "Login.html",
+      "MyInfoEdit.html",
+      "SetPaypwd.html"
+    ]
+  },
+  "Trolley.html": {
+    "resources": [
+      "js/fastclick.js",
+      "mui/mui.min.css",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "js/ajax/Tollrey.js",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "GoodsClassfy.html": {
+    "resources": [
+      "js/ajax/GoodsClassfy.js",
+      "js/md5.min.js",
+      "js/fastclick.js",
+      "mui/mui.min.css",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "images/backgroundimg500.500.jpg"
+    ],
+    "refer": [
+      "GoodsList.html"
+    ]
+  },
+  "Unloaded.html": {
+    "resources": [
+      "css/main.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "MyInfo.html"
+    ],
+    "refer": [
+      "Login.html",
+      "MyInfo.html"
+    ]
+  },
+  "Login.html": {
+    "resources": [
+      "images/left.png",
+      "js/ajax/loginAjax.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": [
+      "SignIn.html",
+      "Findpassword.html"
+    ]
+  },
+  "SignIn.html": {
+    "resources": [
+      "mui/mui.min.css",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "images/backgroundimg500.256.jpg"
+    ],
+    "refer": [
+      "Login.html"
+    ]
+  },
+  "GoodsList.html": {
+    "resources": [
+      "mui/mui.min.css",
+      "js/md5.min.js",
+      "css/main.css",
+      "js/jquery.min.js",
+      "images/backgroundimg500.500.jpg",
+      "js/mui.slideright.js",
+      "images/goback.png",
+      "images/goodslist-1.png",
+      "images/buybus.png",
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "mui/mui.min.js",
+      "js/ajax/GoodsList.js"
+    ],
+    "refer": [
+      "GoodsIntr.html"
+    ]
+  },
+  "GoodsIntr.html": {
+    "resources": [
+      "swiper/swiper.min.css",
+      "css/main.css",
+      "js/jquery.min.js",
+      "mui/mui.lazyload.img.js",
+      "mui/mui.lazyload.js",
+      "images/backgroundimg500.500.jpg",
+      "swiper/swiper.min.js",
+      "js/mui.slideright.js",
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/ajax/GoodsIntrAjax.js",
+      "mui/mui.min.js",
+      "images/share.png",
+      "images/goback.png",
+      "images/close.png"
+    ],
+    "refer": [
+      "OrderSure.html"
+    ]
+  },
+  "Pictailar.html": {
+    "resources": [
+      "js/exif.js",
+      "js/app.js",
+      "mui/mui.min.css",
+      "css/cropper.css",
+      "js/jquery.min.js",
+      "mui/mui.min.js",
+      "js/cropper.min.js"
+    ],
+    "refer": []
+  },
+  "MyInfoEdit.html": {
+    "resources": [
+      "images/goback.png",
+      "js/fastclick.js",
+      "js/assets/timechoser.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "js/assets/picker.min.js",
+      "js/assets/datas.js",
+      "images/backgroundimg500.500.jpg",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": [
+      "Pictailar.html",
+      "ChangePaypwd.html",
+      "Changepassword.html"
+    ]
+  },
+  "OrderSure.html": {
+    "resources": [
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/common.css",
+      "images/right.png",
+      "css/qrorder.css",
+      "mui/mui.min.js",
+      "images/location.png",
+      "js/ajax/OrderSure.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": [
+      "MyAddrManage.html",
+      "MyYouhq.html",
+      "OrderPay.html"
+    ]
+  },
+  "MyAddrManage.html": {
+    "resources": [
+      "images/chose2.png",
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "js/ajax/MyAddrManage.js",
+      "images/edit.png",
+      "images/trash.png",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "images/chose1.png"
+    ],
+    "refer": [
+      "MyAddrEdit.html"
+    ]
+  },
+  "MyAddrEdit.html": {
+    "resources": [
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "js/assets/picker.min.js",
+      "js/assets/citychoser.js",
+      "js/assets/datas.js",
+      "js/ajax/MyAddrEdit.js",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "MyYouhq.html": {
+    "resources": [
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/main.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js",
+      "js/ajax/MyYouhq.js"
+    ],
+    "refer": []
+  },
+  "OrderPay.html": {
+    "resources": [
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/common.css",
+      "js/ajax/OrderPay.js",
+      "css/qrorder.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": [
+      "OrderPayOnline.html"
+    ]
+  },
+  "OrderPayOnline.html": {
+    "resources": [
+      "js/ajax/OrderPayChanel.js",
+      "css/main.css",
+      "images/payway3.png",
+      "images/payway1.png",
+      "images/payway2.png",
+      "js/ajax/PaypwdConfirm.js",
+      "js/ajax/OrderPayOnline.js",
+      "images/chose3.png",
+      "css/passwordkeyboard.css",
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "Findpassword.html": {
+    "resources": [
+      "images/backgroundimg500.256.jpg",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "js/ajax/Findpassword.js",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "ChangePaypwd.html": {
+    "resources": [
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "js/ajax/ChangePaypwd.js",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": [
+      "FindPaypwd.html"
+    ]
+  },
+  "FindPaypwd.html": {
+    "resources": [
+      "js/ajax/FindPaypwd.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "Changepassword.html": {
+    "resources": [
+      "js/fastclick.js",
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "js/ajax/Changepassword.js",
+      "css/login.css",
+      "css/common.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "SetPaypwd.html": {
+    "resources": [
+      "js/ajax/commonfuc.js",
+      "js/jquery.min.js",
+      "css/login.css",
+      "css/common.css",
+      "mui/mui.min.js",
+      "js/mui.slideright.js"
+    ],
+    "refer": []
+  },
+  "html/Index-nav.html": {
+    "resources": [
+      "html/css/footnav.css",
+      "html/images/foot_2-2.png",
+      "html/images/foot_1-2.png",
+      "html/Index.html",
+      "html/images/foot_4-1.png",
+      "html/images/foot_2-1.png",
+      "html/mui/mui.min.css",
+      "html/images/foot_3-1.png",
+      "html/images/foot_1-1.png",
+      "html/fonts/mui.ttf",
+      "html/mui/mui.min.js",
+      "html/images/foot_4-2.png",
+      "html/images/foot_3-2.png"
+    ],
+    "refer": [
+      "html/Index.html",
+      "html/GoodsClassfy.html",
+      "html/Trolley.html",
+      "html/MyInfo.html",
+      "html/Unloaded.html",
+      "html/Login.html"
+    ]
+  },
+  "html/Index.html": {
+    "resources": [
+      "html/images/backgroundimg500.256.jpg",
+      "html/js/mui.slideright.js",
+      "html/images/backgroundimg500.500.jpg",
+      "html/js/ajax/commonfuc.js",
+      "html/js/ajax/Index.js",
+      "html/images/idx-vip.jpg",
+      "html/css/MyIndex.css",
+      "html/swiper/swiper.min.css",
+      "html/swiper/swiper.min.js",
+      "html/js/jquery.min.js",
+      "html/js/md5.min.js"
+    ],
+    "refer": [
+      "html/GoodsIntr.html"
+    ]
+  },
+  "html/GoodsClassfy.html": {
+    "resources": [
+      "html/js/ajax/GoodsClassfy.js",
+      "html/images/backgroundimg500.500.jpg",
+      "html/js/fastclick.js",
+      "html/css/main.css",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/mui/mui.min.css",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js",
+      "html/js/md5.min.js"
+    ],
+    "refer": []
+  },
+  "html/Trolley.html": {
+    "resources": [
+      "html/js/ajax/Tollrey.js",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/mui/mui.min.css",
+      "html/images/trash.png",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/css/main.css",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/OrderSure.html"
+    ]
+  },
+  "html/MyInfo.html": {
+    "resources": [
+      "html/images/myinfo-icon3.png",
+      "html/images/backgroundimg500.500.jpg",
+      "html/images/selectaddr.png",
+      "html/images/myinfo-icon4.png",
+      "html/js/ajax/InfoAjax.js",
+      "html/images/myinfo-icon2.png",
+      "html/images/myinfo-icon1.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/main.css",
+      "html/mui/mui.min.css",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/Login.html",
+      "html/MyInfoEdit.html",
+      "html/Mybalance.html"
+    ]
+  },
+  "html/Findpassword.html": {
+    "resources": [
+      "html/js/ajax/Findpassword.js",
+      "html/images/backgroundimg500.256.jpg"
+    ],
+    "refer": []
+  },
+  "html/Login.html": {
+    "resources": [
+      "html/js/ajax/loginAjax.js",
+      "html/images/left.png",
+      "html/css/login.css",
+      "html/css/common.css",
+      "html/js/jquery.min.js",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/Findpassword.html",
+      "html/SignIn.html"
+    ]
+  },
+  "html/Unloaded.html": {
+    "resources": [
+      "html/MyInfo.html",
+      "html/js/mui.slideright.js",
+      "html/css/main.css",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/MyInfo.html"
+    ]
+  },
+  "html/MyInfoEdit.html": {
+    "resources": [
+      "html/js/assets/timechoser.js",
+      "html/images/backgroundimg500.500.jpg",
+      "html/images/goback.png",
+      "html/js/assets/datas.js",
+      "html/js/assets/picker.min.js",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/css/main.css",
+      "html/mui/mui.min.js",
+      "html/images/selectaddr.png"
+    ],
+    "refer": [
+      "html/ChangePaypwd.html",
+      "html/Changepassword.html",
+      "html/Pictailar.html"
+    ]
+  },
+  "html/FindPaypwd.html": {
+    "resources": [
+      "html/js/ajax/FindPaypwd.js",
+      "html/css/login.css"
+    ],
+    "refer": []
+  },
+  "html/ChangePaypwd.html": {
+    "resources": [
+      "html/js/ajax/ChangePaypwd.js",
+      "html/images/left.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/login.css",
+      "html/css/common.css",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/FindPaypwd.html"
+    ]
+  },
+  "html/OrderSure.html": {
+    "resources": [
+      "html/js/ajax/OrderSure.js",
+      "html/images/left.png",
+      "html/css/qrorder.css",
+      "html/css/common.css",
+      "html/images/location.png",
+      "html/images/right.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/OrderPay.html"
+    ]
+  },
+  "html/OrderPay.html": {
+    "resources": [
+      "html/js/ajax/OrderPay.js"
+    ],
+    "refer": [
+      "html/OrderPayOnline.html"
+    ]
+  },
+  "html/GoodsIntr.html": {
+    "resources": [
+      "html/images/backgroundimg500.500.jpg",
+      "html/js/ajax/GoodsIntrAjax.js",
+      "html/mui/mui.lazyload.img.js",
+      "html/images/close.png",
+      "html/images/share.png",
+      "html/mui/mui.lazyload.js",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/swiper/swiper.min.css",
+      "html/css/main.css",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/swiper/swiper.min.js",
+      "html/mui/mui.min.js",
+      "html/images/goback.png"
+    ],
+    "refer": [
+      "html/OrderSure.html",
+      "html/GoodsIntr.html"
+    ]
+  },
+  "html/OrderPayOnline.html": {
+    "resources": [
+      "html/js/ajax/OrderPayChanel.js",
+      "html/images/payway2.png",
+      "html/js/ajax/OrderPayOnline.js",
+      "html/images/chose3.png",
+      "html/images/payway1.png",
+      "html/images/payway3.png",
+      "html/css/passwordkeyboard.css",
+      "html/images/chose2.png",
+      "html/js/ajax/PaypwdConfirm.js"
+    ],
+    "refer": [
+      "html/FindPaypwd.html"
+    ]
+  },
+  "html/Withdrawdeposit.html": {
+    "resources": [
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/login.css",
+      "html/css/common.css",
+      "html/images/close.png",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/Selectaccout.html": {
+    "resources": [
+      "html/css/login.css",
+      "html/images/Alipay.png",
+      "html/mui/mui.min.css",
+      "html/css/common.css",
+      "html/images/chose2.png",
+      "html/js/fastclick.js"
+    ],
+    "refer": [
+      "html/Withdrawdeposit.html"
+    ]
+  },
+  "html/Mybalance.html": {
+    "resources": [
+      "html/images/left.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/login.css",
+      "html/js/ajax/Mybalance.js",
+      "html/css/common.css",
+      "html/images/wallet.png",
+      "html/js/jquery.min.js",
+      "html/css/main.css",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/Selectaccout.html"
+    ]
+  },
+  "html/Changepassword.html": {
+    "resources": [
+      "html/images/left.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/login.css",
+      "html/js/ajax/Changepassword.js",
+      "html/css/common.css",
+      "html/js/fastclick.js",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/SignIn.html": {
+    "resources": [
+      "html/images/backgroundimg500.256.jpg",
+      "html/images/left.png",
+      "html/js/mui.slideright.js",
+      "html/js/ajax/commonfuc.js",
+      "html/css/login.css",
+      "html/mui/mui.min.css",
+      "html/css/common.css",
+      "html/fonts/mui.ttf",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ],
+    "refer": [
+      "html/Login.html"
+    ]
+  },
+  "html/Pictailar.html": {
+    "resources": [
+      "html/js/exif.js",
+      "html/mui/mui.min.css",
+      "html/css/cropper.css",
+      "html/js/cropper.min.js",
+      "html/js/app.js",
+      "html/js/jquery.min.js",
+      "html/mui/mui.min.js"
+    ]
+  }
+}

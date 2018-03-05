@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="Trolley">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="Trolley">
+		<!--主体 begin-->
+		<div class="Conter mui-content">
+			<div class="W-Trolley">
+				<ul>
+					<!--<li class="goodslist">
+						<div class="mui-input-row mui-checkbox mui-left">
+							<label>
+							<div class="imgbox"><img src="images/Goods.jpg"></div>
+						<div class="buyit">
+							<div class="buyit-top">
+								<span class="goodsname">海南芒果（大台农）2000g</span>
+								<span class="deletgoods"><img src="images/trash.png"></span>
+							</div>
+							<div class="buyit-center"><span class="rules">已售222件</span></div>
+							<div class="buyit-bottom">
+								<div class="singelprice">
+									<span class="single-goods">￥<strong class="prices">49.9</strong></span>
+									<input class="sonprice" type="hidden" value="49.9" />
+								</div>
+								<div class="priceadd">
+									<span class="price-minus">-</span>
+									<span class="price-num" name="PriceNum">1</span>
+									<span class="price-plus">+</span>
+								</div>
+							</div>
+						</div>
+						</label>
+							<input name="checkbox" value="Item 1" type="checkbox" checked>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+			<div class="TotalCount hide">
+				<div class="numbox">
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>全选<input name="checkbox" value="Item 1" type="checkbox" id="all" checked></label>
+					</div>
+					<p><span class="fonts">合计：</span><strong style="font-size: 0.7rem;">￥<span class="TotalNum">0.00</span></strong></p>
+				</div>
+				<div class="countbtbox">
+					<a href="javascript:void(0);" class="CountBtn">结算</a>
+				</div>
+			</div>
+			<div class="Trolleyempty hide">
+				<p>购物车还是空的，快去挑选商品吧~</p>
+				<a class="gosee my-action-back">去逛逛</a>
+			</div>
+		</div>
+		<!--主体 end-->
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/Tollrey.js"></script>
+	<script type="text/javascript">
+		function youhua() {
+			FastClick.attach(document.body); //ios点击优化
+
+			var pl = $("span.TotalNum");
+			var reg = /(.*[\:\：]\s*)([\+\d\.]+)(\s*元)/g;
+
+			//遍历购物车所有商品
+			var total = 0;
+			$('.W-Trolley ul li.goodslist').each(function() {
+				var $this = $(this);
+				var singleprice = parseFloat($this.find("input.sonprice").val()).toFixed(2);
+				var num = parseFloat($this.find("[name='PriceNum']").text());
+				total += parseFloat(singleprice * num);
+			});
+			pl.text(total.toFixed(2));
+			fontSize(pl);
+			//			切换选中商品
+			$('#all').click(function() {
+				total = 0;
+				if($('#all').is(":checked")) {
+					$('input[type=checkbox]').prop('checked', true);
+				} else {
+					$('input[type=checkbox]').prop('checked', false);
+				}
+				$('.W-Trolley ul li.goodslist input[type=checkbox]').each(function(i) {
+					if($(this).is(':checked')) {
+						var singleprice = parseFloat($(this).parent().find("input.sonprice").val()).toFixed(2);
+						var num = parseFloat($(this).parent().find("[name='PriceNum']").text());
+						total += parseFloat(singleprice * num);
+					}
+				});
+				pl.text(total.toFixed(2));
+				fontSize(pl);
+			});
+			$('.W-Trolley input[type=checkbox]').click(function() {
+				total = 0;
+				$('.W-Trolley input[type=checkbox]').each(function(i) {
+					if($(this).is(':checked')) {
+						var singleprice = parseFloat($(this).parent().find("input.sonprice").val()).toFixed(2);
+						var num = parseFloat($(this).parent().find("[name='PriceNum']").text());
+						total += parseFloat(singleprice * num);
+					}
+				});
+				pl.text(total.toFixed(2));
+				fontSize(pl);
+			});
+			//删除商品
+			$('.deletgoods').click(function() {
+				var $this = $(this),
+					$parent = $this.closest('li.goodslist');
+				var index = $parent.index();
+				var prices = parseFloat($parent.find(".prices").text()).toFixed(2);
+				var lastprice = parseFloat(pl.text()) - prices;
+				var btnArray = ['取消', '确定'];
+				mui.confirm('您确定删除该商品吗？', '贵点', btnArray, function(e) {
+					if(e.index == 1) {
+						$parent.remove();
+						pl.text(lastprice.toFixed(2));
+						setTimeout(function() {
+							if($('.W-Trolley ul li.goodslist').eq(0).html() == undefined) {
+								$('.Trolleyempty').removeClass('hide');
+								$('.TotalCount').hide();
+							}
+						}, 0);
+						fontSize(pl);
+						Removeshopping(index);
+					};
+				});
+			});
+
+			//减少物品
+			$(".price-minus").click(function() {
+				var me = $(this),
+					index = $(this).parents('li').index(),
+					txt = me.next("[name='PriceNum']"),
+					pc = me.closest(".priceadd"),
+					singlepriceobj = pc.parent().find("input.sonprice"),
+					singlepricenum = singlepriceobj.val(),
+					priceobj = pc.parent().find(".prices");
+				var val = parseFloat(txt.text()),
+					finalnum;
+				if(val <= 1) {
+					finalnum = 1;
+				} else {
+					finalnum = val - 1;
+				}
+				txt.text(finalnum);
+				var price = parseFloat(singlepricenum.replace(reg, '$2')) * finalnum;
+				priceobj.text(price.toFixed(2));
+				var sum = 0;
+				$(".prices").each(function(i, dom) {
+					sum += parseFloat($(this).text().replace(reg, "$2"));
+				});
+				pl.text(sum.toFixed(2));
+				fontSize(pl);
+				amend(index, finalnum);
+			});
+
+			//增加物品
+			$(".price-plus").click(function() {
+				var index = $(this).parents('li').index(),
+					me = $(this),
+					txt = me.prev("[name='PriceNum']"),
+					pc = me.closest(".priceadd"),
+					singlepriceobj = pc.parent().find("input.sonprice"),
+					singlepricenum = singlepriceobj.val(),
+					priceobj = pc.parent().find(".prices");
+				var val = parseFloat(txt.text()),
+					finalnum;
+				finalnum = val + 1;
+				txt.text(finalnum);
+				var price = parseFloat(singlepricenum.replace(reg, '$2')) * finalnum;
+				priceobj.text(price.toFixed(2));
+				var sum = 0;
+				$(".prices").each(function(i, dom) {
+					sum += parseFloat($(this).text().replace(reg, "$2"));
+				});
+				pl.text(sum.toFixed(2));
+				fontSize(pl);
+				amend(index, finalnum);
+			});
+			//修改购物车
+			var wxid = localStorage.getItem("m_openid");
+
+			function amend(index, num) {
+				mui.post(commonUrl + 'apigd/cartedit', {
+					m_openid: wxid,
+					cart_type: 'cart',
+					flag: Data[index].flag,
+					number: num
+				}, function(data) {
+					if(data.code != 1) {
+						plus.nativeUI.toast('操作失败');
+					}
+				}, 'json');
+			}
+			//删除购物车
+			function Removeshopping(index) {
+				mui.post(commonUrl + 'apigd/cartdel', {
+					m_openid: wxid,
+					cart_type: 'cart',
+					flag: Data[index].flag,
+				}, function(data) {
+					if(data.code === -1) { //删除失败
+						plus.nativeUI.toast("操作失败");
+					} else if(data.code === 1) { //删除成功,重新获取商品列表
+						mui.toast('删除成功')
+						refreshTrolley_badge();
+						mui.getJSON(Url + 'apigd/cartlist ', {
+							m_openid: wxid
+						}, function(data) {
+							Data = data.data;
+						});
+					}
+				}, 'json');
+			}
+			// 根据价格改变字体大小
+			function fontSize(num) {
+				if(num.text().length > 7) {
+					$(' .numbox p').css('font-size', '0.7rem');
+					num.css('font-size', '0.7rem');
+				} else {
+					$(' .numbox p').css('font-size', '0.8rem');
+					num.css('font-size', '0.8rem');
+				}
+			}
+		};
+
+		document.querySelector('.my-action-back').addEventListener('tap', function() {
+			var wvs = plus.webview.getLaunchWebview();
+			mui.fire(wvs, 'gohome');
+			plus.webview.show(wvs);
+		});
+	</script>
+
+</html>

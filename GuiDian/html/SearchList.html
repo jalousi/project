@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link type="text/css" rel="stylesheet" href="mui/mui.min.css">
+		<link type="text/css" rel="stylesheet" href="css/common.css">
+		<link type="text/css" rel="stylesheet" href="css/search.css">
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/md5.min.js"></script>
+		<style type="text/css">
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0
+				}
+				100% {
+					opacity: 1
+				}
+			}
+			
+			.img-lazyload {
+				-webkit-animation: fadeIn 350ms linear 0ms 1 normal both;
+				animation: fadeIn 350ms linear 0ms 1 normal both;
+				opacity: 1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<div class="serchbox">
+				<input type="search" id="search">
+			</div>
+			<a href="javascript:void(0)" class="Searchbtn">
+				<p>搜索</p>
+			</a>
+		</header>
+		<div class="SerchListWrap">
+			<div class="SerchList page-slideright">
+				<!--<section>
+				<div class="mainintr">
+					<div class="m-left">
+						<a href="GoodsIntr.html"><img src="images/idx-food1.jpg"></a>
+					</div>
+					<div class="m-right">
+						<div class="info-top">
+							<a href="GoodsIntr.html">外 婆桥麻辣小龙虾20-30g/只</a>
+						</div>
+						<div class="info-bottom">
+							<div class="info-b-l">
+								<p>已售490件</p>
+								<p>¥<span class="mainintr-price">79.9</span></p>
+							</div>
+							<div class="info-b-r">
+								<a href="#"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>-->
+			</div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/SerchList.js"></script>
+	<script type="text/javascript">
+		window.onload = function searchSS() {
+			FastClick.attach(document.body); //ios点击优化
+		}
+
+//		mui.init({
+//			pullRefresh: {
+//				container: '#pullrefresh',
+//				down: {
+//					style: '',
+//					color: '#999999',
+//					callback: pulldownRefresh
+//				},
+//				up: {
+//					//contentinit:'上拉显示更多',
+//					contentrefresh: '正在加载...',
+//					contentnomore: '没有更多商品了',
+//					callback: pullupRefresh
+//				}
+//			}
+//		});
+
+//		var _page = 1;
+//		var _acont;
+//		var _serchvalue = serchinput.value.replace(/(^\s+)|(\s+$)/g, '');
+
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+//		function pulldownRefresh() {
+//			setTimeout(function() {
+//				_page = 1;
+//				_Serchcont.empty();
+//				SerchList(_serchvalue, _page, 5);
+//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+//				mui('#pullrefresh').pullRefresh().refresh(true); //重置上拉加载
+//				mui.toast('已更新');
+//			}, 500);
+//		}
+
+		/**
+		 * 上拉加载具体业务实现
+		 */
+
+//		function pullupRefresh() {
+//			setTimeout(function() {
+//				_page = _page + 1;
+//				_acont = SerchList(_serchvalue, _page, 5)
+//				mui('#pullrefresh').pullRefresh().endPullupToRefresh(_acont == 0); //参数为true代表没有更多数据了。
+//			}, 500);
+//		}
+	</script>
+
+</html>

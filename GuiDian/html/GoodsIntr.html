@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="swiper/swiper.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="GoodsIntr">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>产品详情</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter page-slideright" id="Lazyloadimg">
+			<!-- Swiper -->
+			<div class="picshow">
+				<!--图片切换-->
+				<div class="swiper-container swiper-container1">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="img"><img src="images/backgroundimg500.500.jpg" /></div>
+						</div>
+						<div class="swiper-slide">
+							<div class="img"><img src="images/backgroundimg500.500.jpg" /></div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<!--图片对应的说明-->
+				<div class="swiper-container swiper-container2">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="intros">
+								<div class="left">
+									<p class="Title"> </p>
+									<p class="remark"> </p>
+									<p class="margin-t"><span class="price">¥&nbsp;<c>0</c></span><span>已售<b>0</b>件</span></p>
+								</div>
+								<div class="sharebtn">
+									<a href="javascript:void(0);"><i></i>
+										<p>分享</p>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--推荐商品-->
+			<div class="recommend">
+				<div class="tit">
+					<h2>推荐商品</h2></div>
+				<div class="goods">
+					<ul>
+						<!--<li> 
+							<a href="">
+								<div class="imgbox"><img src="images/Goods.jpg"></div>
+								<p>精选蓝莓2盒</p><strong>¥&nbsp;49.9</strong></a>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+
+			<!--产品详情&产品规格-->
+			<div class="goodsintr">
+				<div class="swiper-container3">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide active-nav">
+							<span>产品详情</span>
+						</div>
+						<!--<div class="swiper-slide">
+							<span>产品规格</span>
+						</div>-->
+					</div>
+				</div>
+				<div class="swiper-container4">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="imgs">
+								<!--<img src="images/goodsintrs.jpg">-->
+							</div>
+						</div>
+						/
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 -->
+		<div class="footer">
+			<a class="selectsize" Tabindex='1'>加入购物车</a>
+			<a class="selectsize" Tabindex='2'>立即购买</a>
+		</div>
+
+		<!--选择商品规格弹窗-->
+		<div class="backdrop">
+			<div class="backdp-mask"></div>
+			<div class="backdp-panel">
+				<div class="sizebox">
+					<div class="Chosebox">
+						<!--<div class="flexbox" >
+							<span class="flexbox-tit">规格</span>
+							<ul class="mui-table-view-radio">
+								<li class="mui-table-view-cell">
+									<a>500g</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="flexbox">
+							<span class="flexbox-tit">口味</span>
+							<ul class="mui-table-view-radio">
+								<li class="mui-table-view-cell">
+									<a>香辣</a>
+								</li>
+								<li class="mui-table-view-cell mui-selected">
+									<a>十三香</a>
+								</li>
+							</ul>
+						</div>-->
+					</div>
+
+					<div class="flexbox number">
+						<span class="teasts-tit">数量</span>
+						<div class="priceadd">
+							<span class="price-minus">-</span>
+							<span class="price-num" name="PriceNum">1</span>
+							<span class="price-plus">+</span>
+						</div>
+					</div>
+					<span class="closebox"></span>
+				</div>
+				<div class="surebuybtn">
+					<a href="javascript:void(0)" class="surebuy">确定</a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="swiper/swiper.min.js"></script>
+	<script src="mui/mui.min.js"></script>
+	<script src="mui/mui.lazyload.js"></script>
+	<script src="mui/mui.lazyload.img.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/GoodsIntrAjax.js"></script>
+	<script>
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+	</script>
+</html>

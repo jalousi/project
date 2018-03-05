@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css">
+		<link type="text/css" rel="stylesheet" href="css/qrorder.css">
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>确认订单</p>
+		</header>
+		<div class="header"></div>
+		<section class="page-slideright">
+			<div class="mrsite">
+				<img src="images/location.png" alt="location">
+				<div class="dzxx">
+					<p>收货人：<span class="xm">张三</span><span class="hm">13545657890</span></p>
+					<p><span class="shdz">收货地址：</span><span class="dz">湖南省长沙市高新区麓谷企业广场F4栋</span></p>
+				</div>
+			</div>
+			<div class="jiange"></div>
+			<div class="ddxq">
+				<h1>订单编号：123456789</h1>
+				<div class="splb">
+					<img src="images/zhengagnx.png" alt="Product main photo">
+					<div class="spsm">
+						<h2>海南芒果（大台农）2000g</h2>
+						<p>¥39.90</p>
+					</div>
+					<p>×<span>1</span></p>
+				</div>
+				<div class="splb">
+					<img src="images/zhengagnx.png" alt="Product main photo">
+					<div class="spsm">
+						<h2>海南芒果（大台农）2000g</h2>
+						<p>¥39.90</p>
+					</div>
+					<p>×<span>18</span></p>
+				</div>
+				<div class="splb">
+					<img src="images/zhengagnx.png" alt="Product main photo">
+					<div class="spsm">
+						<h2>海南芒果（大台农）2000g</h2>
+						<p>¥39.90</p>
+					</div>
+					<p>×<span>4</span></p>
+				</div>
+			</div>
+			<div class="ddzj">
+				<p>订单总价<span>¥139.70</span></p>
+			</div>
+			<div class="ddzj">
+				<p>实付款<span class="FinalPay">¥139.70</span></p>
+			</div>
+			<div class="ddzj OrderTime">
+				<p>下单时间<span>2017-06-27 15:19</span></p>
+			</div>
+		</section>
+		<div class="footer"></div>
+		<footer>
+			<div class="tjdd surerecive page-slideright">
+				<a href="#">确认收货</a>
+			</div>
+		</footer>
+
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script>
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+	</script>
+
+</html>

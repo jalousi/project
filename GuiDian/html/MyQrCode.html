@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>百区团购</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="MyAddrs MyQrCode">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>我的二维码</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter page-slideright">
+			<div class="qrcodewraper">
+				<div class="qrcodebox"><img src="images/backgroundimg500.500.jpg"></div>
+				<p>扫码分享您的推荐码</p>
+				<p><span class="myInvatecode"></span></p>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 -->
+		<div class="footer">
+			<a href="javascript:void(0)" id="Invatefriend">邀请朋友</a>
+		</div>
+		<!--邀请弹窗-->
+		<div class="backdrop">
+			<div class="backdp-mask"></div>
+			<div class="backdp-panel">
+				<div class="sharebox page-slideright">
+					<ul>
+						<li>
+							<a class="weixing">微信好友</a>
+						</li>
+						<li>
+							<a class="friends">朋友圈</a>
+						</li>
+					</ul>
+				</div>
+				<div class="canclebtn">
+					<a href="javascript:void(0)" class="cancel">取消</a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script>
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+		var InvateBt = document.getElementById('Invatefriend');
+		var cancelbt = document.querySelector('.cancel');
+		var BackDrop = document.querySelector('.backdrop');
+		var BackDropmask = document.querySelector('.backdp-mask');
+		var BackDroppanel = document.querySelector('.backdp-panel');
+		var oClass = 'show';
+
+		InvateBt.addEventListener('click', function() {
+			BackDrop.style.display = "block";
+			setTimeout(function() {
+				addClass(BackDrop, oClass);
+				addClass(BackDropmask, oClass);
+				addClass(BackDroppanel, oClass);
+			}, 0)
+		});
+		cancelbt.addEventListener('click', function() {
+			removeClass(BackDropmask, oClass);
+			removeClass(BackDroppanel, oClass);
+			removeClass(BackDrop, oClass);
+			setTimeout(function() {
+				BackDrop.style.display = "none";
+			}, 300)
+		});　　　　　　
+		function hasClass(element, csName) {　　　
+			return !!element.className.match(new RegExp("(\\s|^)" + csName + "(\\s|$)"));　　
+		}　　　　　　
+		function addClass(element, csName) {　　　　　　　
+			if(!hasClass(element, csName)) {　　　　　　　　　
+				element.className += ' ' + csName;　　　　　　
+			}
+		}
+
+		function removeClass(element, csName) {
+			if(hasClass(element, csName)) {
+				element.className = element.className.replace(new RegExp("(\\s|^)" + csName + "(\\s|$)"), "");
+			}
+		};
+	</script>
+	<script type="text/javascript">
+		var filerurl = "";
+		wxid = localStorage.getItem("m_openid");
+		mui.post(commonUrl + 'apigd/myer', {
+			m_openid: wxid,
+			size: 10
+		}, function(data) {
+			if(data.code == 1) {
+				filerurl = data.data.fileurl;
+				$(".qrcodebox img").attr('src', filerurl);
+				$(".myInvatecode").html(data.data.tgid);
+			} else {
+				mui.toast('您不是分销商');
+			}
+		}, 'json');
+
+		var Intent = null,
+			File = null,
+			Uri = null,
+			main = null;
+		var shares = null;
+		var shareImageUrl = '';
+		mui.plusReady(function() {
+			updateSerivces();
+			if(plus.os.name == "Android") {
+				Intent = plus.android.importClass("android.content.Intent");
+				File = plus.android.importClass("java.io.File");
+				Uri = plus.android.importClass("android.net.Uri");
+				main = plus.android.runtimeMainActivity();
+			}
+		})
+		/**
+		 * 更新分享服务
+		 */
+		function updateSerivces() {
+			plus.share.getServices(function(s) {
+				shares = {};
+				for(var i in s) {
+					var t = s[i];
+					shares[t.id] = t;
+				}
+			}, function(e) {
+				mui.toast("获取分享服务列表失败：" + e.message);
+			});
+		}
+		//		分享按钮点击事件
+		document.querySelector(".weixing").addEventListener('tap', function() {
+			shareAction('weixin', 'WXSceneSession');
+		});
+		document.querySelector(".friends").addEventListener('tap', function() {
+			shareAction('weixin', 'WXSceneTimeline');
+		});
+		/**
+		 * 分享操作
+		 */
+		function shareAction(id, ex) {
+			var s = null;
+			if(!id || !(s = shares[id])) {
+				mui.toast("无效的分享服务！");
+				return;
+			}
+			if(s.authenticated) {
+				//mui.toast("---已授权---");
+				shareMessage(s, ex);
+			} else {
+				mui.toast("---未授权---");
+				s.authorize(function() {
+					shareMessage(s, ex);
+				}, function(e) {
+					mui.toast("认证授权失败");
+				});
+			}
+		}
+		/**
+		 * 发送分享消息
+		 */
+		function shareMessage(s, ex) {
+			var msg = {
+				content: '分享-详情',
+				href: 'http://gd.hngdstny.com/wx/index/er_fx?m_openid=' + wxid,
+				title: "贵点",
+				content: '贵点有机，健康生活倡导者。',
+				thumbs: ['http://gd.hngdstny.com/sx/sxpublic/data/uploads/upload/image/20170815/20170815120602_26064.jpg'],
+				pictures: ['http://gd.hngdstny.com/sx/sxpublic/data/uploads/upload/image/20170815/20170815120602_26064.jpg'],
+				extra: {
+					scene: ex
+				}
+			};
+			s.send(msg, function() {
+				mui.toast("分享成功!");
+			}, function(e) {
+				mui.toast("分享失败!");
+			});
+		}
+	</script>
+
+</html>

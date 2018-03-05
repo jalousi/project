@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css">
+		<link type="text/css" rel="stylesheet" href="css/qrorder.css">
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body style="background-color: #fff;">
+		<header>
+			<a class="cancelbtn" href="javascript:void(0);"><img src="images/left.png"></a>
+			<p>支付详情</p>
+		</header>
+		<div class="header"></div>
+		<section class="page-slideright">
+			<div class="ddbh">
+				<p>订单编号：<span class="myOrderid">123456789</span><span class="ddzt">待付款</span></p>
+			</div>
+			<div class="xdsj">
+				<p>下单时间：<span class="Creattime">----年--月--日</span></p>
+			</div>
+			<div class="jiange"></div>
+			<div class="yfje">
+				<p>应付金额：<span class="ShouldPaynum">¥0.00</span></p>
+			</div>
+			<div class="sfje">
+				<p>实付金额：<span class="FinalPaynum">¥0.00</span></p>
+			</div>
+			<div class="ddts">
+				请在30分钟内完成支付，否则订单将被取消。
+			</div>
+		</section>
+		<div class="footer"></div>
+		<footer class="page-slideright">
+			<div class="hj ZF">
+				<p>取消订单</p>
+			</div>
+			<a href="javascript:void(0);">
+				<div class="tjdd">
+					立即支付
+				</div>
+			</a>
+		</footer>
+		<div class="tankuangleirong">
+			<div class="tishiyu">确定离开吗？</div>
+			<div class="quxiao">取消</div>
+			<div class="goumai">确认</div>
+		</div>
+		<div class="tankuangyinying"></div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/OrderPay.js"></script>
+	<script>
+		jQuery(document).ready(function($) {
+			FastClick.attach(document.body); //ios点击优化
+
+			var old_back = mui.back;
+			mui.back = function() {
+				old_back();
+				var backtoGoods = plus.webview.getWebviewById('OrderSure.html');
+				mui.fire(backtoGoods, 'backtoGoods');
+				refreshTrolley();
+			}
+			
+			$('.ZF p').click(function() { //jquery的点击事件
+				$('.tankuangleirong .tishiyu').html('确定取消订单吗？');
+				$('.tankuangyinying').fadeIn(100); //全局变得黑的效果，具体的div就是theme-popover-mask这个
+				$('.tankuangleirong').fadeIn(200); //将隐藏的窗口div显示出来
+				$('.tankuangleirong .goumai').attr('name','cancelorder');
+			});
+			$('.cancelbtn').click(function() {
+				$('.tankuangleirong .tishiyu').html('确定离开吗？');
+				$('.tankuangyinying').fadeIn(100);
+				$('.tankuangleirong').fadeIn(200);
+				$('.tankuangleirong .goumai').attr('name','leftpage');
+			});
+			$('.goumai').click(function() {
+				$('.tankuangyinying').fadeOut(100);
+				$('.tankuangleirong').fadeOut(200);
+				var _type = $(this).attr('name');
+				if(_type=='cancelorder'){
+					changeOrderStatus(_orderid, 'qx');
+					setTimeout(function(){
+						mui.back();
+					},1000)
+				} else if(_type=='leftpage'){
+					mui.back();
+				}
+			});
+			$(".tankuangleirong .quxiao").click(function() {
+				$('.tankuangyinying').fadeOut(100); //
+				$('.tankuangleirong').fadeOut(200); //将显示的窗口隐藏起来
+			})
+		});
+	</script>
+
+</html>

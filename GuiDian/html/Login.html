@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="Login">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/login.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="Login">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>登录</p>
+		</header>
+		<div class="ExtConter">
+			<div class="from page-slideright">
+				<from>
+					<input id="Phone" class="myInput" type="tel" maxlength="15" placeholder="请输入手机号">
+					<input id="password" class="myInput" maxlength="20" type="password" placeholder="密码">
+					<button id="login">登录</button>
+				</from>
+				<div class="option">
+					<a href="SignIn.html">注册</a>
+					<a href="Findpassword.html">忘记密码</a>
+				</div>
+			</div>
+			<!--<footer>
+				<div class="footer">
+					<div class="segment"></div>
+					<p>快捷登录</p>
+					<div class="segment"></div>
+				</div>
+				<div class="weixing">
+					<img id="weixin" src="images/weixing.png">
+					<p >微信</p>
+				</div>
+			</footer>-->
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/loginAjax.js"></script>
+</html>

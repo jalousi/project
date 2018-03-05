@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body class="MessageGroup MyInfoEdit">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>个人信息</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter">
+			<section class="laster imgIcon">
+				<a class="fileimg">
+					<label class="w-bar-label">个人头像</label>
+					<img class="headicon mui-action-preview" id="head-img1" src="images/backgroundimg500.500.jpg">
+				</a>
+			</section>
+			<section class="page-slideright">
+				<a href="MynameEdit.html" id="nickname"><label class="w-bar-label">修改昵称</label> </a>
+			</section>
+			<section class="page-slideright">
+				<a href="Changepassword.html"><label class="w-bar-label">修改密码</label></a>
+			</section>
+			<section class="page-slideright">
+				<a href="ChangePaypwd.html"><label class="w-bar-label">修改支付密码</label></a>
+			</section>
+
+			<section class="laster">
+				<a style="background:none;padding-right: 0.5rem;">
+					<label class="w-bar-label">真实姓名</label>
+					<div class="w-bar-control">
+						<div class="editablebox">
+							<input type="text" maxlength='4' class="Mycontenteditable" id="m_realname" contenteditable="true" />
+						</div>
+					</div>
+				</a>
+			</section>
+			<section>
+				<a>
+					<label class="w-bar-label">生日</label>
+					<div class="w-bar-control">
+						<div class="editablebox">
+							<p class="Mycontenteditable" id="sel_timer" contenteditable="false">请选择</p>
+						</div>
+					</div>
+				</a>
+			</section>
+			<section>
+				<a style="background:none;padding-right: 0.5rem;">
+					<label class="w-bar-label">QQ号码</label>
+					<div class="w-bar-control">
+						<div class="editablebox">
+							<input type="number" oninput="if(value.length>12)value=value.slice(0,12)" id="QQmark" class="Mycontenteditable" contenteditable="true" value="" />
+						</div>
+					</div>
+				</a>
+			</section>
+
+			<section class="laster page-slideright">
+				<a href="MyAddrManage.html"><label class="w-bar-label">管理收货地址</label></a>
+			</section>
+
+			<section class="laster">
+				<a style="background:none;padding-right: 0.5rem;">
+					<label class="w-bar-label">注册时间</label>
+					<div class="w-bar-control">
+						<div class="editablebox">
+							<p class="Mycontenteditable" contenteditable="false" id="creat_at">2017-06-23</p>
+						</div>
+					</div>
+				</a>
+			</section>
+		</div>
+		<!--主体 end-->
+		<div class="submit">
+			<button class="submit_buttom">提交</button>
+		</div>
+		<!--底部 -->
+		<div class="floatbox">
+			<div class="tankuangleirong">
+				<div class="tishiyu">
+					消费推广产品才可分享二维码
+				</div>
+				<div class="goumai">确定</div>
+			</div>
+			<div class="tankuangyinying"></div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/assets/picker.min.js"></script>
+	<script src="js/assets/datas.js"></script>
+	<script src="js/assets/timechoser.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+
+		var wxid = localStorage.getItem("m_openid");
+		var text = document.querySelector("#nickname").childNodes[1];
+
+		//个人信息的修改
+		function updatemessage(nickname, pic, realname, qq, birthday) {
+			mui.post(commonUrl + 'apigd/membersave', {
+				m_openid: wxid,
+				m_nickname: nickname,
+				datajson_pic: pic,
+				m_realname: realname,
+				datajson_qq: qq,
+				datajson_birthday: birthday
+			}, function(data) {
+				if(data.code == 1) {
+					mui.toast('信息修改成功');
+					var wvs = plus.webview.getLaunchWebview();
+					//触发首页webview上自定义的刷新个人信息和购物车事件
+					mui.fire(wvs, 'refueshMyInfo');
+				} else {
+					mui.toast("修改失败");
+				}
+			}, 'json');
+		}
+
+		document.querySelector('.submit_buttom').addEventListener('tap', function() {
+			var pic = $("img.headicon").attr('src'),
+				realname = $("#m_realname").val(),
+				qq = $("#QQmark").val(),
+				birthday = $("#sel_timer").html();
+			updatemessage(text.nodeValue, pic, realname, qq, birthday);
+			setTimeout(function() {
+				mui.back();
+			}, 500)
+		});
+
+		//修改图像
+		function galleryImg() {
+			// 从相册中选择图片
+			plus.gallery.pick(function(path) {
+				showImg(path);
+			}, function(e) {
+				outSet('取消选择图片');
+			}, {
+				filter: 'image'
+			});
+		}
+
+		function showImg(url) {
+			$("img.headicon").attr('src', url);
+		}
+
+		//个人基本信息
+		shwomessage();
+
+		function shwomessage() {
+			mui.getJSON(commonUrl + 'apigd/member', {
+				m_openid: wxid
+			}, function(data) {
+				var Data = data.data;
+				var icon = localStorage.getItem('lcon')
+				if(icon) {
+					$("img.headicon").attr('src', icon);
+					localStorage.setItem('lcon', "");
+				} else {
+					$("img.headicon").attr('src', is_null(Data.data_json.pic, Data.data_json.pic_def));
+				}
+
+				if(Data.m_nickname) {
+					text.nodeValue = is_null(Data.m_nickname, Data.m_account);
+				}
+				$("#creat_at").html(Data.creat_at);
+				$("#m_realname").val(is_null(Data.m_realname));
+				if(Data.data_json.qq) {
+					$("#QQmark").val(is_null(Data.data_json.qq));
+				};
+				if(Data.data_json.birthday) {
+					$("#sel_timer").html(is_null(Data.data_json.birthday));
+				}
+			});
+		}
+
+		//自定义事件：修改昵称后仅刷新个人信息页的昵称
+		document.addEventListener('refueshMyInfo-nickname', function() {
+			var name = localStorage.getItem("name");
+			if(name != null) {
+				text.nodeValue = name;
+			}
+		});
+
+		function shade() {
+			$('.ShareQrCode').click(function() { //jquery的点击事件
+				$('.tankuangyinying').fadeIn(100); //全局变得黑的效果，具体的div就是theme-popover-mask这个
+				$('.tankuangleirong').fadeIn(200); //将隐藏的窗口div显示出来
+			});
+			$(".tankuangleirong .goumai").click(function() {
+				$('.tankuangyinying').fadeOut(100); //
+				$('.tankuangleirong').fadeOut(200); //将显示的窗口隐藏起来
+			});
+		}
+
+		function is_null(data, index) {
+			if(data == 'undefined' || data == undefined || data == "" || data == 0 || data == "0" || data == 'null' || data == null || data == 'false' || data == false) {
+				return index;
+			} else {
+				return data;
+			}
+		}
+
+		(function($) {
+			mui.init({
+				swipeBack: true
+			});
+			mui.init({
+				preloadPages: [{
+					id: 'MyInfoEdit',
+					url: 'MyInfoEdit.html'
+				}]
+			});
+			/*点击头像触发*/
+			document.querySelector('.fileimg').addEventListener('tap', function() {
+				if(mui.os.plus) {
+					var a = [{
+						title: "拍照"
+					}, {
+						title: "从手机相册选择"
+					}];
+					plus.nativeUI.actionSheet({
+						title: "修改用户头像",
+						cancel: "取消",
+						buttons: a
+					}, function(b) { /*actionSheet 按钮点击事件*/
+						switch(b.index) {
+							case 0:
+								break;
+							case 1:
+								getImage(); /*拍照*/
+								break;
+							case 2:
+								galleryImg(); /*打开相册*/
+								break;
+							default:
+								break;
+						}
+					})
+				}
+			}, false);
+			//拍照
+			function getImage() {
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+						cutImage(s); /*上传图片*/
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/head.png"
+				})
+			}
+
+			//本地相册选择
+			function galleryImg() {
+				plus.gallery.pick(function(a) {
+					cutImage(a);
+				}, function(a) {}, {
+					filter: "image"
+				});
+			};
+ 
+  //预览图像
+                document.getElementById("head-img1").addEventListener('tap', function(e) {
+                    e.stopPropagation(); //阻止冒泡
+                    initImgPreview();
+                });
+
+                function initImgPreview() {
+                    var imgs = document.querySelectorAll("img.mui-action-preview");
+                    imgs = mui.slice.call(imgs);
+                    if(imgs && imgs.length > 0) {
+                        var slider = document.createElement("div");
+                        slider.setAttribute("id", "__mui-imageview__");
+                        slider.classList.add("mui-slider");
+                        slider.classList.add("mui-fullscreen");
+                        slider.style.display = "none";
+                        slider.addEventListener("tap", function() {
+                            slider.style.display = "none";
+                        });
+                        slider.addEventListener("touchmove", function(event) {
+                            event.preventDefault();
+                        })
+                        var slider_group = document.createElement("div");
+                        slider_group.setAttribute("id", "__mui-imageview__group");
+                        slider_group.classList.add("mui-slider-group");
+                        imgs.forEach(function(value, index, array) {
+                            //给图片添加点击事件，触发预览显示；
+                            value.addEventListener('tap', function() {
+                                slider.style.display = "block";
+                                _slider.refresh();
+                                _slider.gotoItem(index, 0);
+                            })
+                            var item = document.createElement("div");
+                            item.classList.add("mui-slider-item");
+                            var a = document.createElement("a");
+                            var img = document.createElement("img");
+                            img.setAttribute("src", value.src);
+                            a.appendChild(img)
+                            item.appendChild(a);
+                            slider_group.appendChild(item);
+                        });
+                        slider.appendChild(slider_group);
+                        document.body.appendChild(slider);
+                        var _slider = mui(slider).slider();
+                    }
+                }
+			//将图片压缩转成base64
+			function cutImage(path) {
+				$.openWindow({
+					url: 'Pictailar.html',
+					id: 'Pictailar',
+					extras: {
+						path: path,
+					},
+					show: {
+						aniShow: 'zoom-fade-in',
+						duration: 800
+					},
+					waiting: {
+						autoShow: true
+					}
+				});
+			}
+
+			//更新用户头像
+			function update_head_img(e) {
+				var my_icon = e.detail.img;
+				//先上传
+				mui.post(commonUrl + 'apigd/fileupload2', {
+					my_icon:my_icon
+				}, function(data) {
+					if(data.code == 1) {
+						mui.toast('图片上传成功');
+						document.querySelector('.headicon').setAttribute('src', data.data.full_url);
+						//触发首页webview上自定义的刷新个人信息和购物车事件
+					} else {
+						mui.toast("图片上传失败");
+					}
+				}, 'json');
+			}
+			window.addEventListener("updateHeadImg", update_head_img); //添加自定义事件，其他页面调用
+		})(mui);
+	</script>
+
+</html>

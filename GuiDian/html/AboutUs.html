@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="AboutUs">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="AboutUs">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>关于我们</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter">
+			<div class="aboutuscont">
+				<div class="cont-t">
+					<img class="logo" src="images/aboutuslogo.png">
+					<p class="tit">贵点</p>
+					<span class="copyright-top">Copyright 2017  版本v1.0</span>
+					<p class="into"></p>
+					<!--<p class="into">湖南贵点生态农业产业发展有限公司成立于2015 年5月，是一家以“公司+基地+用户”为经营模式的市级农业龙头产业。集农产品生产、加工、科贸、电子商务于一体的综合型农业企业。公司秉承“求真务实、开拓进取；团结协作、勇攀高峰”的精神，以为用户提供安全、放心的农产品为己任。公司在全国范围内寻找具有有机认证的、认同并坚持有机生态发展理念的机构为伙伴，为广大消费者提供高质、安全、放心的生态有机产品。</p>-->
+				</div>
+				<span class="copyright-bottom">湖南贵点生态农业产业发展有限公司<br /><span class="copyright">©</span>2017 guidian.com</span>
+			</div>
+		</div>
+		<!--主体 end-->
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script>
+		mui.ajax(commonUrl + 'apigd/shopdocrows', {
+			data: {
+				did: 13
+			},
+			dataType: 'json', //服务器返回json格式数据
+			type: 'get', //HTTP请求类型
+			timeout: 6000, //超时时间设置为6秒；
+			success: function(data) {
+				if(data.code == 1) {
+					$('.into').html(data.data.rows.content);
+				} else {
+					mui.toast('请求失败');
+				};
+			},
+			error: function(xhr, type, errorThrown) {
+				//异常处理；
+				mui.toast(RequestErrorMsg(type));
+			}
+		});
+	</script>
+
+</html>

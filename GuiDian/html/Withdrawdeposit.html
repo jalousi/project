@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="Withdrawdeposit">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/common.css" rel="stylesheet" type="text/css">
+		<link href="css/login.css" rel="stylesheet" type="text/css">
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="Login Withdrawdeposit">
+		<header>
+			<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/left.png" alt="back"></a>
+			<p>提现申请</p>
+		</header>
+		<div class="Conter page-slideright">
+			<div class="XZaccount">
+				<p class="PCI">提现至<span></span></p>
+				<p class="tailNumber">尾号<span></span></p>
+			</div>
+			<div class="money">
+				<h2>提现金额</h2>
+				<h3><span>¥</span><input type="number" placeholder="0.00"></h3>
+			</div>
+			<div class="ketixian">
+				<p>可提现金额¥<span class="canWithdraw"></span></p><span class="allWithdraw">全部提现</span>
+			</div>
+			<div class="semit">
+				<a type="buttom" href="javascript:void(0);">确认提现</a>
+			</div>
+		</div>
+		<div class="tankuangleirong">
+			<div class="tishiyu">
+				<p>验证手机号<span style="color: #E02E24;"></span><img src="images/close.png"></p>
+				<input type="number" id="auth_code" placeholder="验证码">
+				<div class="captcha">获取验证码</div>
+			</div>
+			<div class="goumai">提交</div>
+		</div>
+		<div class="tankuangyinying"></div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script type="text/javascript">
+		var id = localStorage.getItem("num"),
+			type = localStorage.getItem("type"),
+			code = localStorage.getItem("code");
+		var yue = localStorage.getItem("yue");
+		if(type == 0) {
+			var code1 = code.split(" ");
+			code1 = code1[code1.length - 1];
+			$(".PCI span").html("银行卡")
+			$(".tailNumber span").html(code1);
+		} else {
+			$(".PCI span").html("支付宝")
+			$(".tailNumber span").html(code.substr(7, 4));
+		}
+		$('.canWithdraw').html(yue);
+		$(".allWithdraw").bind('tap', function() {
+			$('.money input').val($('.canWithdraw').html());
+		})
+		document.querySelector('.tishiyu p img').addEventListener('tap', function() {
+			$('.tankuangyinying').fadeOut(100); //
+			$('.tankuangleirong').fadeOut(200); //将显示的窗口隐藏起来
+		})
+		document.querySelector('.semit').addEventListener('tap', function() {
+			$('.money input').blur();
+			$('.tishiyu p span').html(localStorage.getItem('account'));
+			Withdraw = $('.money input').val();
+			if(Withdraw) {
+				if(parseInt(Withdraw) <= parseInt(yue)) {
+					localStorage.setItem('money', Withdraw);
+					$('.tankuangyinying').fadeIn(100); //全局变得黑的效果，具体的div就是theme-popover-mask这个
+					$('.tankuangleirong').fadeIn(200); //将隐藏的窗口div显示出来
+					$('#auth_code').focus();
+					document.querySelector(".goumai").addEventListener('tap', function() {
+						if(verifyCode()) {
+							$('.tankuangyinying').fadeOut(100); //
+							$('.tankuangleirong').fadeOut(200); //将显示的窗口隐藏起来
+							drawdeposit(Withdraw);
+						}
+					})
+				} else {
+					mui.toast("输入金额超出已提现金额");
+				};
+			} else {
+				mui.toast("提现金额不能为空");
+			}
+		})
+
+		function drawdeposit(num) {
+			var wxid = localStorage.getItem("m_openid");
+			mui.ajax(commonUrl + 'apigd/membertx', {
+				data: {
+					m_openid: wxid,
+					bankcardid: id,
+					money: num
+				},
+				dataType: 'json',
+				type: 'post', 
+				timeout: 6000, 
+				success: function(data) {
+					if(data.code == 1) {
+						mui.toast("提现申请成功");
+						creatMywebview("Withdraw.html", "Withdraw.html");
+					} else {
+						if(data.code == "-2") {
+							mui.toast(data.msg);
+						} else {
+							mui.toast("提现申请失败");
+						};
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+		}
+
+		function Gotourl(url) {
+			var myAddrmanage = plus.webview.create(url, url, {
+				top: '0px',
+				bottom: '0px'
+			});
+			var aniShowM = 'pop-in';
+			if(parseFloat(mui.os.version) < 4.4) { //Android平台暂时
+				aniShowM = 'slide-in-right';
+			}
+			myAddrmanage.addEventListener("titleUpdate", function() {
+				setTimeout(function() {
+					myAddrmanage.show(aniShowM, 300);
+				}, 0);
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		var code = "",
+		    captcha=document.querySelector(".captcha"),
+			phone = "";
+		document.querySelector(".captcha").addEventListener('tap', function() {
+			var clock = '';
+			var nums = 30;
+			var btn;
+			phone = $(".tishiyu p span").html();
+			authCode(phone);
+		
+			function sendCode(thisBtn) {
+				btn = thisBtn;
+				btn.disabled = true; //将按钮置为不可点击
+				btn.innerHTML = "重新发送(" + nums + ")";
+				thisBtn.style.background = "#999999";
+				clock = setInterval(doLoop, 1000); //一秒执行一次
+			}
+
+			function doLoop() {
+				nums--;
+				if(nums > 0) {
+					btn.innerHTML = "重新发送(" + nums + ")";
+				} else {
+					clearInterval(clock); //清除js定时器
+					btn.disabled = false;
+					btn.innerHTML = '重新发送';
+					nums = 30; //重置时间
+					document.querySelector(".captcha").style.background = "#fc5046";
+				}
+			}
+
+		//发送验证码
+		function authCode(phone) {
+			var wxid = localStorage.getItem("m_openid");
+			mui.ajax(commonUrl + 'apigd/sendsms_logined', {
+				data: {
+					phone: phone,
+					type: 'txreqcode',
+					m_openid: wxid
+				},
+				dataType: 'json', 
+				type: 'post', 
+				timeout: 6000, 
+				success: function(data) {
+					if(data.code == 1) {
+						mui.toast("成功发送短信")
+						code = data.data.code;
+						sendCode(captcha);
+					} else {
+						mui.toast("验证码发送失败")
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+		}
+		});
+		//验证验证码
+		function verifyCode() {
+			if($("#auth_code").val().length == 6 && code.length == 6) {
+				if($("#auth_code").val() == code) {
+					return true;
+				} else {
+					mui.toast('验证码错误');
+					return false;
+				}
+			} else {
+				mui.toast('验证码错误');
+				return false;
+			}
+		}
+	</script>
+
+</html>

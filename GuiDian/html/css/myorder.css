@@ -1,0 +1,167 @@
+/*2017-07-11(c) Copyright 2017 Administrator. All Rights Reserved. */
+section .yjlb{
+	background: white;
+	overflow: hidden;
+	width: 100%;
+	height: 1.8rem;
+	border-bottom:1px #eeedea solid;
+	border-top:1px #eeedea solid;
+	position: fixed;
+	top:1.8rem;
+	z-index: 9;
+	left: 0;
+	right: 0;
+}
+section .yjlb ul{
+	width: 100%;
+	position: fixed;
+    top: 1.8rem;
+    left: 0;
+    z-index: 99;
+    background: white;
+}
+section .yjlb li{ 
+	float: left;
+	width: 33.33%;
+	text-align: center;
+	line-height: 1.8rem;
+	font-size: 0.55rem;
+}
+section .yjlb .xzbk span{
+	padding-bottom: 0.5rem;
+	border-bottom: 0.1rem solid #e02e24;
+	color: #e02e24;
+}
+section .orderConter .dfk{
+	border-top:0.3rem solid #f0f0f0;
+	transition:all .35s;-webkit-transition:all .35s;opacity: 1;
+}
+section .orderConter .dfk.hide{opacity:0;}
+section .orderConter .dfk:not(:first-child){
+	border-top:0.3rem solid #f0f0f0;
+}
+section .orderConter .yfkdd:not(:first-child){
+	border-top:0.3rem solid #f0f0f0;
+}
+section h1.ddbt{
+	width: auto;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	font-size: 0.6rem;
+	font-weight: normal;
+	border-bottom: 1px solid #E0E0E0;
+	padding-left: 0.5rem;
+}
+section h1 .ddzt{
+	float: right;
+	margin-right: 0.5rem;
+	color: #e02e24;
+}
+section .splb{
+	width: 100%;
+}
+section .splb .spxx{
+	padding: 0.4rem;
+	border-bottom:1px solid #E0E0E0;
+	display: flex;display:-webkit-flex;justify-content:space-between;align-items:center;
+}
+section .splb .spxx img{
+	width: 3rem;
+	height: 3rem;
+}
+section .splb .spxx .spsm{
+	width:66%;
+	height: 3rem;
+	overflow: hidden;
+	padding-left: 0.5rem;
+	display: flex;display:-webkit-flex;justify-content:space-between;flex-direction: column;
+}
+section .splb .spxx .spsm h2{
+	overflow: hidden;
+    font-size: 0.6rem;
+	font-weight: normal;
+	
+}
+section .splb .spxx .spsm span.rules{display:block;margin-top: 0.2rem; padding-left: 0.1rem; font-size: 0.54em;color:#999999;}
+section .splb .spxx .spsm p{
+	width: 100%;
+	text-align: left; 
+	font-size: 0.58rem;
+	color: #999999;
+	margin-top: 0.2rem;
+}
+section .splb .spxx p{
+	width: 1.5rem;
+	font-size: 0.6rem;
+	padding-right: 0.1rem;
+	text-align:right;
+	color: #999999;
+}
+section .ddhj{
+	width: auto;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	font-size: 0.6rem;
+	font-weight: normal;
+	padding:0 0.4rem;
+	display: flex;display:-webkit-flex;justify-content:space-between;align-items: center;
+}
+section .ddhj .ddhj-l{font-size: 0.55rem;}
+section .ddhj .hjje{
+	color: #e02e24;
+	font-size:0.65rem;
+}
+section .ddhj .ddhj-r{display: flex;display:-webkit-flex;align-items: center;justify-content:flex-end;width: 50%;}
+section .ddhj .ddhj-r a{display: block;height:1.1rem;align-self: flex-end;margin-left: 0.3rem;}
+section .ddhj p{
+	height: 1rem;
+	border: 1px solid #e02e24;
+	border-radius:1rem; 
+	line-height: 1rem;
+	padding: 0 0.3rem;
+	color: #e02e24;
+	min-width:1.9rem;
+	text-align: center;
+	font-size: 0.56rem;
+}
+/*实现左右滑动*/
+section .zyhd{
+	padding-top: 1.9rem;
+	width: 100%;
+	overflow-x: hidden;
+	background-color: #fff;
+}
+section .zyhd .orderConter{
+	width: 100%;
+	overflow-x: hidden;
+}
+.nomore{
+	width: 100%;
+	height: 1.5rem;
+	margin-top: 8rem;
+	text-align: center;
+	line-height: 1.5rem;
+	font-size: 0.65rem;
+	color: #999999;
+}
+section .order-list{
+	width: 100%;
+	height: 1.5rem;
+	border-bottom:1px solid #E0E0E0;
+	background-color: #fff;
+}
+section .order-list p{
+	font-size: 0.55rem;
+	width: 100%;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	margin-left: 0.3rem;
+	color: #999999;
+}
+section .order-list p span{
+	float: right;
+	width: 70%;
+	text-align: right;
+	color: #999999;
+	margin-right: 0.8rem;
+}

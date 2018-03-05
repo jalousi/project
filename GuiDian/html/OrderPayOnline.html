@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<link href="css/passwordkeyboard.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="OrderPayOnline">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript :history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>在线支付</h2>
+		</div>
+		<!--公共头部 end-->
+
+		<!--主体 begin-->
+		<div class="Conter page-slideright">
+			<div class="W-pay">
+				<div class="relesetime">
+					<div class="relesetime-t">
+						<P>支付剩余时间</P>
+						<h2>00 : 00</h2>
+					</div>
+					<div class="relesetime-b">
+						<p>应付金额</p>
+						<p>￥<span id="Totalpay">89.90</span></p>
+					</div>
+				</div>
+				<div class="paywaybox">
+					<div class="tit">
+						<p>请选择支付方式</p>
+					</div>
+					<ul class="mui-table-view-radio">
+						<li class="payway mui-table-view-cell mui-selected">
+							<label class="checkgroup" id="alipay">
+							<div class="payway-l"><p>支付宝</p></div>
+							<div class="payway-r"><input type="checkbox" class="paycheck" id="AliPay" name="AliPay"/></div>
+						</label>
+						</li>
+						<li class="payway mui-table-view-cell">
+							<label class="checkgroup" id="wxpay">
+							<div class="payway-l"><p>微信</p></div>
+							<div class="payway-r"><input type="checkbox" class="paycheck" id="WeiXPay" name="WeiXPay"/></div>
+						</label>
+						</li>
+						<li class="payway mui-table-view-cell">
+							<label class="checkgroup" id="yuepay">
+							<div class="payway-l"><p>余额支付</p></div>
+							<div class="payway-r"><input type="checkbox" class="paycheck" id="YuePay" name="YuePay"/></div>
+						</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--主体 end-->
+
+		<!--底部 -->
+		<div class="footer">
+			<div class="surepaybtn">
+				<a href="javascript:void(0);" id="Surepay">确认支付<span style="padding:0 0.2rem;"></span>¥<span id="PayNumb">89.80</span></a>
+			</div>
+		</div>
+
+		<!--支付密码弹窗-->
+		<div class="backdrop">
+			<div class="backdp-mask"></div>
+			<div class="backdp-panel">
+				<div class="paypwdbox">
+					<div class="top">
+						<div class="canclebox">
+							<a class="cancle" href="javascript:void(0);"><img src="images/goback.png" /></a>
+						</div>
+						<h2>请输入支付密码</h2>
+					</div>
+
+					<div class="inputbox" style="text-align: center;">
+						<form id="password">
+							<span class="pass"></span>
+							<span class="pass"></span>
+							<span class="pass"></span>
+							<span class="pass"></span>
+							<span class="pass"></span>
+							<span class="pass pass_right"></span>
+						</form>
+						<p class="findpwd page-slideright">
+							<a href="FindPaypwd.html">忘记支付密码？</a>
+						</p>
+					</div>
+
+					<div id="keyboardDIV">
+						<div id="key">
+							<ul id="keyboard" class="clearfix">
+								<div class="liboxs">
+									<li class="symbol"><span class="off">1</span></li>
+									<li class="symbol"><span class="off">2</span></li>
+									<li class="symbol btn_number_"><span class="off">3</span></li>
+								</div>
+								<div class="liboxs">
+									<li class="symbol"><span class="off">4</span></li>
+									<li class="symbol"><span class="off">5</span></li>
+									<li class="symbol btn_number_"><span class="off">6</span></li>
+								</div>
+								<div class="liboxs">
+									<li class="symbol"><span class="off">7</span></li>
+									<li class="symbol"><span class="off">8</span></li>
+									<li class="symbol btn_number_"><span class="off">9</span></li>
+								</div>
+								<div class="liboxs">
+									<li class="delete lastitem">删除</li>
+									<li class="symbol"><span class="off">0</span></li>
+									<li class="cancle btn_number_">取消</li>
+								</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/OrderPayChanel.js"></script>
+	<script src="js/ajax/OrderPayOnline.js"></script>
+	<script src="js/ajax/PaypwdConfirm.js"></script>
+	<script>
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+	</script>
+
+</html>

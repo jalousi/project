@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="MyInfo">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/fastclick.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="MyInfo MessageGroup">
+		<!--主体 begin-->
+		<div class="Conter page-slideright mui-content">
+			<section class="firster">
+				<a href="MyInfoEdit.html">
+					<div class="headimgbox"><img src="images/backgroundimg500.500.jpg"></div>
+					<p>昵称</p>
+				</a>
+			</section>
+			<section class="icongroup">
+				<ul>
+					<li>
+						<a href="VipList.html"><i></i>
+							<p>排行榜</p>
+						</a>
+					</li>
+					<li class="ShareQrCode">
+						<a href="javascript:void(0)"><i></i>
+							<p>我的二维码</p>
+						</a>
+					</li>
+					<li>
+						<a href="Orderlist.html"><i></i>
+							<p>我的订单</p>
+						</a>
+					</li>
+					<li>
+						<a href="MyYouhq.html"><i></i>
+							<p>优惠券</p>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section class="blance">
+				<a href="javascript:void(0)"><label class="w-bar-label">我的余额</label></a>
+			</section>
+			<section class="vip">
+				<a href="javascript:void(0)"><label class="w-bar-label">我的会员</label></a>
+			</section>
+			<section class="order">
+				<a href="javascript:void(0)"><label class="w-bar-label">推广订单</label></a>
+			</section>
+			<section class="paypwd">
+				<a href="SetPaypwd.html"><label class="w-bar-label">设置支付密码</label></a>
+			</section>
+
+			<section class="laster">
+				<a href="MyHelpcenter.html"><label class="w-bar-label">帮助中心</label></a>
+			</section>
+			<section>
+				<a id="logOut"><label class="w-bar-label">退出登录</label></a>
+			</section>
+		</div>
+		<!--主体 end-->
+
+		<div class="floatbox">
+			<div class="tankuangleirong">
+				<div class="tishiyu">
+					加入VIP会员分享二维码
+				</div>
+				<div class="goumai">确定</div>
+			</div>
+			<div class="tankuangyinying"></div>
+		</div>
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script src="js/ajax/InfoAjax.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			FastClick.attach(document.body); //ios点击优化
+		});
+	</script>
+
+</html>

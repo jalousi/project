@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>贵点</title>
+<!--		<link href="mui/mui.min.css" rel="stylesheet" type="text/css" />-->
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js"></script>
+	</head>
+
+	<body class="VipList">
+		<!--公共头部 begin-->
+		<div class="header">
+			<div class="goback">
+				<a class="mui-action-back" href="javascript:void(0);" onclick="javascript:history.back(-1);"><img src="images/goback.png" /></a>
+			</div>
+			<h2>排行榜</h2>
+		</div>
+		<!--公共头部 end-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background:white;">
+			<!--主体 begin-->
+			<div class="Conter page-slideright" style="padding-bottom: 0.5rem;">
+				<!--<section>
+				<div class="left">
+					<span class="idx">12</span>
+					<img src="images/idx-foodlist.jpg">
+					<span class="name">李彦宏阿瑟发王菲</span>
+				</div>
+				<div class="right">
+					<p>推广人数：1236</p>
+				</div>
+				</section>-->
+			</div>
+			<!--主体 end-->
+		</div>
+
+	</body>
+	<script src="mui/mui.min.js"></script>
+	<script src="js/mui.slideright.js"></script>
+	<script src="js/ajax/commonfuc.js"></script>
+	<script type="text/javascript">
+		var index = 1,
+			x = 0;
+		VipListAjax(index, 20);
+
+		function VipListAjax(index, num) {
+			var length = 0;
+			mui.ajax(commonUrl + 'apigd/membershopfxpph', {
+				data: {
+					page: index,
+					pagesize: num
+				},
+				dataType: 'json',
+				type: 'get',
+				timeout: 6000,
+				success: function(data) {
+					if(data.code == 1) {
+						var Data = data.data,
+							num = 0,
+							html = "";
+						if(Data.length > 0) {
+							for(var i = 0; i < Data.length; i++) {
+								var y = parseInt(Data[i].ph) + x;
+								html += '<section><div class="left"><span class="idx">' + y + '</span><img src="' +
+									Data[i].data_json.pic + '"><span class="name">' + Data[i].m_nickname + '</span></div>' +
+									'<div class="right"><p>推广人数：' + Data[i].pn + '</p></div></section>';
+							};
+							$("div.Conter").append(html);
+							length = Data.length;
+						} else {
+							mui.toast('无更多数据');
+						}
+					} else {
+						mui.toast("网络错误");
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					mui.toast(RequestErrorMsg(type));
+				}
+			});
+			return length;
+		};
+//		mui.init({
+//			swipeBack: false,
+//			pullRefresh: {
+//				container: '#pullrefresh',
+//				down: {
+//					style: 'circle',
+//					color: '#999999',
+//					callback: pulldownRefresh
+//				},
+//				up: {
+//					contentrefresh: '正在加载...',
+//					contentnomore: '没有更多了',
+//					callback: pullupRefresh
+//				}
+//			}
+//		});
+		/**
+		 * 下拉刷新具体业务实现
+		 */
+//		function pulldownRefresh() {
+//			setTimeout(function() {
+//				VipListAjax(index, 15);
+//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed 重置上拉加载
+//				mui.toast("已更新");
+//			}, 1500);
+//		}
+
+		/**
+		 * 上拉加载具体业务实现
+		 */
+//		function pullupRefresh() {
+//			setTimeout(function() {
+//				mui('#pullrefresh').pullRefresh().endPullupToRefresh((length != 15)); //参数为true代表没有更多数据了。
+//				VipListAjax(index + 1, 15);
+//				index++;
+//				x += 15;
+//			}, 500);
+//		}
+	</script>
+
+</html>
