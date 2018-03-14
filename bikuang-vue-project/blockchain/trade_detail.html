@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		 <meta name="keywords" content="区块链,区块链技术,区块链应用,区块链知识,区块链项目,区块链是什么,区块链概念股,区块链论坛,区块链社区,区块链服务,区块链培训,区块链资讯,区块链活动,区块链市场">
+    <meta name="description" content="链区网为全球区块链爱好者提供区块链项目分享及点评报道、投资顾问、项目分析、市场行情、项目路演、社区服务、区块链技术应用开发及产品设计等专业服务">
+    <meta name="author" content="链区网">
+    <title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="./js/layer/skin/layer.css" />
+		<link rel="stylesheet" href="css/login.css">
+		<style>
+				.jy_list_cont:hover {
+  -webkit-box-shadow: 0 0px 4px rgba(255,102,0,0.4);
+    -moz-box-shadow: 0 0px 4px rgba(255,102,0,0.4);
+    -ms-box-shadow: 0 0px 4px rgba(255,102,0,0.4);
+    -o-box-shadow: 0 0px 4px rgba(255,102,0,0.4);
+    box-shadow: 0 0px 4px rgba(255,102,0,0.4)
+}
+		</style>
+	</head>
+	<body>
+		<!--头部一-->
+		<div class="index_hread_one">
+			<div class="cont_center">
+				<!--logo-->
+				<img src="img/logo_03.png" class="logo_icon">
+				<!--导航-->
+				<div class="nav_box clearfix fl">
+					<a href="javascript:void(0);">首页</a>       
+					<a href="javascript:void(0);">数字货币</a>      
+					<a href="javascript:void(0);" class="active">交易平台</a>       
+					<a href="javascript:void(0);">区块链项目</a>       
+					<a href="javascript:void(0);">资讯</a>       
+					<a href="javascript:void(0);">预测 </a>      
+					<a href="javascript:void(0);">社区</a>
+				</div>
+				<!--登录-->
+				<div class="nav_box_right fr">
+					<div class="loginstatus" style="float: right;">
+					<!-- <div class="nav_hread_img">
+						<img src="img/icon_img_59.png">
+					</div> -->
+					<!-- <a href="javascript:void(0);" class="logo_icon_txt">登录</a> -->
+				</div>
+					<div class="nav_box_seach">
+						<input type="text" class="one_input" placeholder="输入关键词">
+						<a href="javascript:void(0);" class="seach_icon"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--内容-->
+		<div class="index_cont clearfix">
+			<div class="cont_center">
+				<div class="jy_list_info_hread clearfix">
+					<!-- <img src="img/bian_list_17.jpg" class="jy_list_info_hread_img">
+					<div class="jy_list_info_hread_txt">
+						<h1>
+							币安网—比特币、莱特币和以太坊兑换与保证金交易平台
+						</h1>
+						<h2>币安交易平台是由前OKCoin联合创始人赵长鹏（CZ）领导的一群数字资产爱好者创建而成的一个专注区块链资产的交台部位于日本东京。</h2>
+						<div class="info_hread_footer">
+							<span class="margin_left">可以交易：32种货币</span><span class="margin_left">国       家：美国 </span>                   支持交易：<span class="color_one">现货</span>、<span class="color_two">期货</span>、<span class="color_three">法币</span>
+						</div>
+					</div> -->
+				</div>
+				<div class="jy_list_box clearfix">
+				<!-- 	<div class="jy_list">
+						<div class="jy_list_cont height_auto">
+							<div class="jy_list_cont_top">
+								<img src="img/icon_img_55.png">
+								<h1>比特币现金（BCH）</h1>
+								<h2>BCC、BCH、比特币现金</h2>
+								<p>BCC是比特币的一种硬分叉产生的币，它修改了比特币的代码</p>
+							</div>
+							<a href="javascript:void(0);" class="look_icon">
+								进入查看
+							</a>
+						</div>
+					</div> -->
+				</div>
+				<div class="jy_list_paging">
+					<!-- <a href="javascript:void(0);">上一页</a>
+					<a href="javascript:void(0);" class="active">1</a>
+					<a href="javascript:void(0);">1</a>
+					<a href="javascript:void(0);">1</a>
+					<a href="javascript:void(0);">下一页</a> -->
+				</div>
+			</div>	
+		</div>
+		<div class="footer_box">
+			<div class="txt_center">
+				<div class="bottom">
+				联系我们 © 2017 链区网
+			</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script src="js/jquery.pagination.js"></script>
+		<script type="text/javascript" src="./js/layer/layer.js" ></script>
+		<script type="text/javascript" src="js/common.js" ></script>
+		<script>
+		var id=getQueryString('id');
+		var idd=getQueryString('idd');
+		login()
+		  $.ajax({
+                url: host+'api/v2/news/'+id,
+                dataType: "jsonp",
+                type: "get",
+                //data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                success: function (e) {
+						if(e.country){
+              				var country=e.country.cname;
+              			}else{
+              				var country=''
+              			}
+              				var one='';
+              				var two='';
+              				var three='';
+              			if(e.types){
+              				var one=e.types[0]?e.types[0].name:'';
+              				var two=e.types[1]?'、'+e.types[1].name:'';
+              				var three=e.types[2]?'、'+e.types[2].name:'';
+              			}
+						var arr='<img src="'+e.logo+'" class="jy_list_info_hread_img">'+
+'					<div class="jy_list_info_hread_txt">'+
+'						<h1>'+e.title+
+'						</h1>'+
+'						<h2 class="limit-three">'+e.subject+'</h2>'+
+'						<div class="info_hread_footer">'+
+'							<span class="margin_left">可以交易：'+e.can_trade_symbols+'种货币</span><span class="margin_left">国       家：'+country+' </span>                   支持交易：<span class="color_one">'+one+'</span><span class="color_two">'+two+'</span><span class="color_three">'+three+'</span>'+
+ '<span class="bignum_icons" style="float:none;color:#585858;">官网地址：<a href="'+e.website+'"style="color:#585858;"target="_blank">'+e.website+'</a></span>'+
+'						</div>'+
+'					</div>';
+					document.title=e.title+'_链区网';
+					$('.jy_list_info_hread').html(arr);
+                },
+                error: function (err) {
+                   // bms.promptMsg('错误');
+                }
+            	});
+		  var page=1;
+		  var data={
+		  	limit:16,
+			page:page,
+		  }
+		  function list(){
+			var listarguments=arguments;
+	var index = layer.load(0, {shade: false});
+		    $.ajax({
+                url: host+'api/v2/platform/'+idd+'/symbols',
+                dataType: "jsonp",
+                type: "get",
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                	var arr='';
+                	$.each(result.data,function(i,e){				
+		  		arr+='	<div class="jy_list">'+
+'						<div class="jy_list_cont height_auto">'+
+'							<a href="digital_detail.html?id='+e.news.id+'" target="_blank"><div class="jy_list_cont_top">'+
+'								<img src="'+e.logo+'" width="70" height="70">'+
+'								<h1>'+e.news.title+'</h1>'+
+'								<h2>'+e.en_name+'</h2>'+
+'								<p>'+e.news.subject+
+'							</div></a>'+
+'							<a href="digital_detail.html?id='+e.news.id+'" target="_blank"class="look_icon">'+
+'								进入查看'+
+'							</a>'+
+'						</div>'+ 
+'					</div>';
+                	})
+						
+					$('.jy_list_box').html(arr);
+						layer.close(index);
+					     $('.jy_list_paging').pagination({
+              //mode: 'fixed',
+            prevCls:'paging_left',
+            nextCls:'paging_right',
+            prevContent: '上页',
+              nextContent: '下页',
+               coping: true,
+              totalData:result.total,
+              showData:16,
+              isHide:true,
+             // count:3,
+              endPage:result.last_page,
+              //pageCount:result.lastPage,
+              current:result.current_page,
+              callback: function (api) {
+               // $('.paging_box .paging_num span.curent').html(api.getCurrent())
+                  data.page=api.getCurrent();
+                  listarguments.callee();
+              }
+          }); 
+                },
+                error: function (err) {
+                   // bms.promptMsg('错误');
+                }
+            	});
+		}
+list()
+		</script>
+	</body>
+</html>
